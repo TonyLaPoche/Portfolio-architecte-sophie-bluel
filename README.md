@@ -1,8 +1,18 @@
 # Portfolio-architecte-sophie-bluel
 
-Code du projet 6 d'intégrateur web.
+Code du projet 3 développeur web.
 
-## Information pour le lancer le code
+## Contexte
+
+## Objectif réaliser au travers de ce projet
+
+- Gérer les évenements utilisateurs avec Javascript
+- Manipuler les éléments du DOM avec Javascrip
+- Récupérer les données utilisateurs dans le javascript via des formulaires
+
+<hr>
+
+### Information pour le lancer le code
 
  - Lancer le backend depuis votre terminal en suivant les instruction du fichier ReadMe.
  - Si vous désirez afficher le code du backend et du frontend, faites le dans 2 instances de VSCode différentes pour éviter tout problème

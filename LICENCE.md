@@ -1,4 +1,4 @@
-# Droit d'auteur (c) 2012-2023 Terrade Antoine et Openclassrooms
+# Droit d'auteur (c) 2012-2024 Terrade Antoine et Openclassrooms
 
 La permission est accordée, gratuitement, à toute personne obtenant
 une copie de ce logiciel et des fichiers de documentation associés (le

@@ -97,6 +97,7 @@ nav li {
 
 li:hover {
 	color: #B1663C;
+	cursor: pointer;
 }
 #introduction {
 	display: flex;
@@ -125,7 +126,44 @@ li:hover {
 	text-align: center;
 	margin-bottom: 1em;
 }
-.gallery {
+
+/* Filters */
+
+#filters {
+	margin: 30px 0;
+	font-family: 'Syne';
+	font-weight: 700;
+	color: #1D6154
+}
+
+#filters ul {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 20px;
+}
+
+#filters ul li {
+	list-style-type: none;
+	border:1px #1D6154 solid;
+	border-radius: 60px;
+	padding: 10px 20px;
+	transition: all 0.3s ease-in-out;
+	cursor: pointer;
+}
+
+#filters ul li.filter_item_active {
+	background-color: #1D6154;
+	color: white;
+}
+
+#filters ul li:hover {
+	background-color: #1D6154;
+	color: white;
+}
+
+
+#gallery {
 	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
@@ -133,7 +171,7 @@ li:hover {
 	grid-row-gap: 20px;
 }
 
-.gallery img {
+#gallery img {
 	width: 100%;
 
 }

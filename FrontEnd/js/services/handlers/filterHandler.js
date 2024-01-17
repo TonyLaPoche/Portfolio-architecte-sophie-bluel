@@ -1,5 +1,5 @@
-import { getWorks } from "./apiService.js";
-import { displayWorks } from "./workUtils.js";
+import { getWorks } from "../api/apiService.js";
+import { displayWorks } from "../models/workModel.js";
 
 /**
  * Initialise les écouteurs d'événements pour les filtres.

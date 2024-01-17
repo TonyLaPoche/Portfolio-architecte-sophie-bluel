@@ -1,5 +1,5 @@
-import { getWorks } from "./apiService.js";
-import { filterWorks } from "./filterHandler.js";
+import { getWorks } from "./services/api/apiService.js";
+import { filterWorks } from "./services/handlers/filterHandler.js";
 
 const init = async () => {
   filterWorks();

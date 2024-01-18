@@ -1,4 +1,4 @@
-import { constructWork } from "../utils/workConstructor.js";
+import { constructWork } from "../DomConstructor/workConstructor.js";
 
 /**
  * Affiche les travaux dans la galerie à l'id gallery.

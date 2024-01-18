@@ -1,5 +1,6 @@
 import { displayFilters } from "./services/displayModels/displayFilters.js";
 import { getWorks } from "./services/api/routes/getWorks.js";
+import { handler } from "./services/authentification/handler/handler.js";
 /**
  * INITIALISATION
  *
@@ -10,6 +11,7 @@ import { getWorks } from "./services/api/routes/getWorks.js";
  * puis getWorks() pour récupérer les travaux et les afficher.
  */
 const init = async () => {
+  handler();
   await displayFilters();
   await getWorks();
 };

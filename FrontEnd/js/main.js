@@ -1,6 +1,7 @@
 import { displayFilters } from "./services/displayModels/displayFilters.js";
 import { getWorks } from "./services/api/routes/getWorks.js";
 import { loginHandler } from "./services/authentification/handler/loginHandler.js";
+import { loginHandlerNav } from "./services/handlers/loginHandlerNav.js";
 
 class RouterCustom {
   constructor(routes) {
@@ -12,18 +13,15 @@ class RouterCustom {
     return path;
   }
   _matchUrlToRoute(urlSegs) {
-    console.log(this.routes);
     const matchedRoute = this.routes.find((route) => route.path === urlSegs[0]);
     return matchedRoute;
   }
   _loadInitialRoute() {
     const pathnameSplit = window.location.pathname.split("/FrontEnd");
     const pathSegs = pathnameSplit.length > 1 ? pathnameSplit.slice(1) : "";
-    console.log(pathnameSplit);
     this.loadRoute(...pathSegs);
   }
   loadRoute(...urlSegs) {
-    console.log(urlSegs);
     const matchedRoute = this._matchUrlToRoute(urlSegs);
     if (!matchedRoute) {
       throw new Error("Route not found");
@@ -36,16 +34,23 @@ class RouterCustom {
   }
   getCurrentRoute() {
     const path = this._getCurrentURL().split("/FrontEnd");
-    console.log(path[1]);
     return this._matchUrlToRoute([path[1]]);
   }
 }
 
 const routes = [
-  { path: "/", callback: () => console.log("Home page") },
+  {
+    path: "/index.html",
+    callback: () => console.log("vous êtes actuellement sur la page d'accueil"),
+  },
+  {
+    path: "/",
+    callback: () => console.log("vous êtes actuellement sur la page d'accueil"),
+  },
   {
     path: "/login.html",
-    callback: () => console.log("login page"),
+    callback: () =>
+      console.log("vous êtes actuellement sur la page de connexion"),
   },
 ];
 
@@ -64,6 +69,7 @@ const init = async () => {
   const router = new RouterCustom(routes);
   const currentRoute = router.getCurrentRoute();
   if (currentRoute && currentRoute.path === "/") {
+    loginHandlerNav();
     await displayFilters();
     await getWorks();
   } else if (currentRoute && currentRoute.path === "/login.html") {

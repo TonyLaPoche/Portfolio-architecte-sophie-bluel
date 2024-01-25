@@ -1,9 +1,6 @@
-import { login } from "../login.js";
+import { ErrorHandlerConnexion, login } from "../login.js";
 
-export const handler = () => {
-  if (!document.querySelector(".login_form")) {
-    return;
-  }
+export const loginHandler = () => {
   document
     .querySelector(".login_form")
     .addEventListener("submit", async (e) => {
@@ -18,7 +15,9 @@ export const handler = () => {
           alert("Une erreur est survenue lors de la connexion");
         }
       } catch (error) {
-        alert("Une erreur est survenue lors de la connexion");
+        if (error instanceof ErrorHandlerConnexion) {
+          alert(error.message + " NAME :" + error.name);
+        }
       }
     });
 };

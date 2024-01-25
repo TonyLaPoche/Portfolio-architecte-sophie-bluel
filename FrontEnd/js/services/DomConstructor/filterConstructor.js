@@ -2,7 +2,7 @@
  * Construit un élément DOM pour un filtre.
  * @param {Object} filter - Objet représentant un filtre.
  * Donné reçu en paramètre de la fonction displayFilters.
- * @returns Un élément DOM représentant le travail.
+ * @returns {HTMLLIElement} Un élément DOM représentant les filtres
  */
 export const constructFilter = (filter) => {
   const filterDiv = document.createElement("li");

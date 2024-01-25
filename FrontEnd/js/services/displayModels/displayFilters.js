@@ -11,9 +11,6 @@ import { constructFilter } from "../DomConstructor/filterConstructor.js";
  */
 export const displayFilters = async () => {
   const filtersCible = document.querySelector("#filters");
-  if (!filtersCible) {
-    return;
-  }
   filtersCible.innerHTML = "";
   const filters = await getCategories();
   const filtersUnorderedList = document.createElement("ul");

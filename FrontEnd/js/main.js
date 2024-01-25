@@ -50,8 +50,8 @@ const routes = [
 ];
 
 /**
- * # INITIALISATION
- *
+ * ## INITIALISATION
+ * ------------------------------------------------------------
  * Cette fonction initialise le javascript de l'application.
  * Elle est appelée lorsque le DOM est chargé.
  *

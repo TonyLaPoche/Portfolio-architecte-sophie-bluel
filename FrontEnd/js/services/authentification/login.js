@@ -1,5 +1,12 @@
 import { callApi } from "../api/utils/callApi.js";
 
+export class ErrorHandlerConnexion extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "ErrorHandlerConnexion";
+  }
+}
+
 export const login = async (email, password) => {
   const url = "http://localhost:5678/api/users/login";
   const body = JSON.stringify({ email, password });
@@ -19,6 +26,8 @@ export const login = async (email, password) => {
     }
     return true;
   } catch (error) {
-    throw new Error("Une erreur est survenue lors de la connexion", error);
+    throw new ErrorHandlerConnexion(
+      "Une erreur est survenue lors de la connexion"
+    );
   }
 };

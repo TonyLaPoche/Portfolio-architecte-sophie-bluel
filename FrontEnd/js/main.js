@@ -68,7 +68,10 @@ const routes = [
 const init = async () => {
   const router = new RouterCustom(routes);
   const currentRoute = router.getCurrentRoute();
-  if (currentRoute && currentRoute.path === "/") {
+  if (
+    (currentRoute && currentRoute.path === "/") ||
+    currentRoute.path === "/index.html"
+  ) {
     loginHandlerNav();
     await displayFilters();
     await getWorks();

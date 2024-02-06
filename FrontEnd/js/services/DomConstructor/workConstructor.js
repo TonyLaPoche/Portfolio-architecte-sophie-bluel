@@ -8,7 +8,7 @@ export const constructWork = (work) => {
   workDiv.classList.add("work");
   workDiv.innerHTML = `
                       <figure>
-                          <img src="${work.imageUrl}" alt="${work.title}">
+                          <img src="${work.imageUrl}" alt="${work.title}" loading="lazy">
                           <figcaption>${work.title}</figcaption>
                       </figure>
                   `;

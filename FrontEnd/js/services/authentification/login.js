@@ -1,5 +1,7 @@
 import { callApi } from "../api/utils/callApi.js";
-
+/**
+ * Cette erreur est levée lorsqu'une erreur est survenue lors de la connexion.
+ */
 export class ErrorHandlerConnexion extends Error {
   constructor(message) {
     super(message);
@@ -7,6 +9,12 @@ export class ErrorHandlerConnexion extends Error {
   }
 }
 
+/**
+ *
+ * @param {*} email adresse email rensignée par l'utilisateur
+ * @param {*} password mot de passe renseigné par l'utilisateur
+ * @returns  {boolean} true si la connexion est réussie un token est alors intégré au SessionStorage, sinon une erreur est levée.
+ */
 export const login = async (email, password) => {
   const url = "http://localhost:5678/api/users/login";
   const body = JSON.stringify({ email, password });
@@ -20,7 +28,7 @@ export const login = async (email, password) => {
   try {
     const response = await callApi(url, options);
     if (response.token) {
-      localStorage.setItem("token", response.token);
+      sessionStorage.setItem("token", response.token);
     } else if (response.error) {
       throw new Error(response.error);
     }

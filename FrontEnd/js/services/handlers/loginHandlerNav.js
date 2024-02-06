@@ -1,11 +1,15 @@
 import { checkLog } from "../authentification/checkLog.js";
 
+/**
+ * Cette fonction permet de gérer la connexion et la déconnexion de l'utilisateur.
+ */
 export function loginHandlerNav() {
   const loginElementHtml = document.getElementById("login");
-  if (checkLog()) {
+  const hasToken = checkLog();
+  if (hasToken) {
     loginElementHtml.innerHTML = "logout";
     loginElementHtml.addEventListener("click", () => {
-      localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
       window.location.href = "/login.html";
     });
   } else {

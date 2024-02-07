@@ -342,3 +342,41 @@ footer nav ul {
   justify-content: flex-end;
   margin: 2em;
 }
+
+#options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 2em 0;
+}
+
+#options #modify {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 1.5rem;
+  font-family: "Syne";
+  font-weight: 700;
+  padding: 0;
+}
+
+#options:hover {
+  cursor: pointer;
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.portfolio-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 2rem;
+}

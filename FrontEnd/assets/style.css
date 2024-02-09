@@ -351,12 +351,17 @@ footer nav ul {
   margin: 2em 0;
 }
 
+.options-section:hover button {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 #options #modify {
   border: none;
   background-color: rgba(0, 0, 0, 0);
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-family: "Syne";
-  font-weight: 700;
+  font-weight: lighter;
   padding: 0;
 }
 

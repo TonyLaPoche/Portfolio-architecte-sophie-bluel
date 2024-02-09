@@ -1,6 +1,15 @@
 export const handleModify = (button) => {
+  let hasOpen = false;
+  const setHasOpen = (value) => {
+    hasOpen = value;
+  };
   button.addEventListener("click", () => {
-    console.log("modify button clicked");
-    // TODO Trigger the modify action to open modal
+    setHasOpen(!hasOpen);
+    console.log("modal is : ", hasOpen);
+    if (hasOpen) {
+      console.log("open modal");
+    } else {
+      console.log("close modal");
+    }
   });
 };

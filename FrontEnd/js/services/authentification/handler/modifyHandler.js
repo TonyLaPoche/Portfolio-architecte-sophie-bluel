@@ -1,15 +1,21 @@
-export const handleModify = (button) => {
-  let hasOpen = false;
-  const setHasOpen = (value) => {
-    hasOpen = value;
-  };
+import { displayModal } from "../../displayModels/displayModal.js";
+
+export const handleClose = (button) => {
   button.addEventListener("click", () => {
-    setHasOpen(!hasOpen);
-    console.log("modal is : ", hasOpen);
-    if (hasOpen) {
-      console.log("open modal");
-    } else {
-      console.log("close modal");
+    if (document.getElementById("modal") === null) {
+      console.log("modal doesn't exist");
+      return;
     }
+    displayModal(false);
+  });
+};
+
+export const handleOpen = (button) => {
+  button.addEventListener("click", () => {
+    if (document.getElementById("modal")) {
+      console.log("modal already exist");
+      return;
+    }
+    displayModal(true);
   });
 };

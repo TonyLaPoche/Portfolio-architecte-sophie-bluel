@@ -19,3 +19,9 @@ export const handleOpen = (button) => {
     displayModal(true);
   });
 };
+
+export const handleDelete = (button) => {
+  button.addEventListener("click", () => {
+    console.log("delete");
+  });
+};

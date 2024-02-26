@@ -7,7 +7,7 @@ export const constructWork = (work) => {
   const workDiv = document.createElement("div");
   workDiv.classList.add("work");
   workDiv.innerHTML = `
-                      <figure>
+                      <figure data-id="works-${work.id}">
                           <img src="${work.imageUrl}" alt="${work.title}" loading="lazy">
                           <figcaption>${work.title}</figcaption>
                       </figure>

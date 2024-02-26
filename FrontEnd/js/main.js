@@ -1,7 +1,10 @@
 import { displayFilters } from "./services/displayModels/displayFilters.js";
-import { getWorks } from "./services/api/routes/getWorks.js";
 import { loginHandler } from "./services/authentification/handler/loginHandler.js";
 import { loginHandlerNav } from "./services/handlers/loginHandlerNav.js";
+import {
+  fetchAllCategories,
+  fetchAllWorks,
+} from "./services/statements/stateManagers.js";
 
 /**
  * ## ROUTER
@@ -109,8 +112,9 @@ const init = async () => {
     currentRoute.path === "/index.html"
   ) {
     loginHandlerNav();
-    await displayFilters();
-    await getWorks();
+    await fetchAllWorks();
+    await fetchAllCategories();
+    displayFilters();
   } else if (currentRoute && currentRoute.path === "/login.html") {
     loginHandler();
   }

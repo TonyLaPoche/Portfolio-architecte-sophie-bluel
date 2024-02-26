@@ -412,13 +412,19 @@ footer nav ul {
   border-radius: 10px;
 }
 
+.modal-head {
+  display: flex;
+  flex-direction: column;
+}
+
 .modal-head h2 {
   text-align: center;
 }
 
 .modal-head button {
   display: block;
-  width: 100%;
+  width: fit-content;
+  align-self: flex-end;
   text-align: right;
   background-color: transparent;
   border: none;

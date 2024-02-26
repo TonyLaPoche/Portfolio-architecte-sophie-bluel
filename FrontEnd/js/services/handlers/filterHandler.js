@@ -1,5 +1,5 @@
 import { displayWorks } from "../displayModels/displayWorks.js";
-import { getWorks } from "../api/routes/getWorks.js";
+import { getWorksStatesByCategory } from "../statements/stateManagers.js";
 
 /**
  * Initialise les écouteurs d'événements pour les filtres.
@@ -10,8 +10,8 @@ export const filtersHandlers = () => {
   const filterItems = document.querySelectorAll("#filters_list .filter_item");
 
   const updateDisplay = async (filter) => {
-    const works = await getWorks(filter);
-    displayWorks(works);
+    const worksData = getWorksStatesByCategory(filter);
+    displayWorks(worksData);
   };
 
   filterItems.forEach((item) => {

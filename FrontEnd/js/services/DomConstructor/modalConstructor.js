@@ -1,13 +1,19 @@
 import { handleClose } from "../authentification/handler/modifyHandler.js";
+import { displayModal } from "../displayModels/displayModal.js";
+import { workModalConstructor } from "./workModalConstructor.js";
 
 export const modalConstructor = () => {
   const modal = document.createElement("div");
   modal.id = "modal";
   modal.className = "modal";
-
+  modal.addEventListener("click", (e) => {
+    if (e.target.id === "modal") {
+      displayModal(false);
+    }
+  });
   const modalContent = document.createElement("div");
   modalContent.className = "modal-content";
-
+  modalContent.id = "modal-content";
   const modalHead = document.createElement("div");
   modalHead.className = "modal-head";
 
@@ -31,30 +37,7 @@ export const modalConstructor = () => {
   const modalMain = document.createElement("div");
   modalMain.className = "modal-main";
 
-  const ul = document.createElement("ul");
-  ul.className = "gallery-list";
-  for (let i = 0; i < 9; i++) {
-    const li = document.createElement("li");
-    li.className = "gallery-item";
-
-    const figure = document.createElement("figure");
-    const img = document.createElement("img");
-    img.src = "https://fakeimg.pl/350x200/?text=fake";
-    img.alt = "Supprimer";
-
-    const span = document.createElement("span");
-    span.className = "gabargeIcon";
-    const trashIcon = document.createElement("i");
-    trashIcon.className = "fa-solid fa-trash-can";
-
-    span.appendChild(trashIcon);
-    figure.appendChild(img);
-    figure.appendChild(span);
-    li.appendChild(figure);
-    ul.appendChild(li);
-  }
-
-  modalMain.appendChild(ul);
+  workModalConstructor(modalMain);
 
   const separator = document.createElement("hr");
   separator.className = "separator";

@@ -1,8 +1,6 @@
-import { handleModify } from "../authentification/handler/modifyHandler.js";
+import { handleOpen } from "../authentification/handler/modifyHandler.js";
 
-// TODO createElementNS doc ???
-
-export const construcModify = () => {
+export const modifyConstructor = () => {
   const svgElement = document.createElementNS(
     "http://www.w3.org/2000/svg",
     "svg"
@@ -27,7 +25,7 @@ export const construcModify = () => {
   buttonElement.setAttribute("name", "modify");
   buttonElement.setAttribute("type", "button");
   buttonElement.textContent = "modifier";
-  handleModify(buttonElement);
+  handleOpen(buttonElement);
 
   return { svgElement, buttonElement };
 };

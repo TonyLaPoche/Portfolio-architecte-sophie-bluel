@@ -44,9 +44,18 @@ function getWorksStatesByCategory(category) {
   return works;
 }
 
+function deleteElementFromBDD(id) {
+  deleteWork(id);
+}
+
 function deleteWorkStatesById(id) {
-  deleteWork(id); // Supprime l'oeuvre de la base de données
-  states.works = states.works.filter((work) => work.id !== id);
+  const elementToDelete = states.works.find((work) => work.id == id);
+  const newState = states.works.filter((work) => work !== elementToDelete);
+  states.works = newState;
+  document.querySelectorAll(`[data-id="works-${id}"]`).forEach((el) => {
+    el.remove();
+  });
+  deleteElementFromBDD(id);
 }
 
 export {

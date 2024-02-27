@@ -1,6 +1,6 @@
 import { getCategories } from "../api/routes/getCategories.js";
 import { getWorks } from "../api/routes/getWorks.js";
-import { deleteWork } from "../authentification/handler/deleteHandler.js";
+import { deleteWork } from "../api/routes/deleteHandler.js";
 
 const states = {
   // Gestionnaire d'états
@@ -44,8 +44,15 @@ function getWorksStatesByCategory(category) {
   return works;
 }
 
-function deleteElementFromBDD(id) {
-  deleteWork(id);
+async function deleteElementFromBDD(id) {
+  const data = await fetch(`http://localhost:5678/api/works/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    },
+  });
+  const response = await data.json();
+  console.log(response);
 }
 
 function deleteWorkStatesById(id) {

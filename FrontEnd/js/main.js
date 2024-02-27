@@ -105,17 +105,22 @@ const routes = [
  * puis getWorks() pour récupérer les travaux et les afficher.
  */
 const init = async () => {
-  const router = new RouterCustom(routes);
-  const currentRoute = router.getCurrentRoute();
+  // const router = new RouterCustom(routes);
+  // const currentRoute = router.getCurrentRoute();
   if (
-    (currentRoute && currentRoute.path === "/") ||
-    currentRoute.path === "/index.html"
+    // (currentRoute && currentRoute.path === "/") ||
+    // currentRoute.path === "/index.html"
+    window.location.pathname === "/FrontEnd/" ||
+    window.location.pathname === "/FrontEnd/index.html"
   ) {
     loginHandlerNav();
     await fetchAllWorks();
     await fetchAllCategories();
     displayFilters();
-  } else if (currentRoute && currentRoute.path === "/login.html") {
+  } else if (
+    // currentRoute && currentRoute.path === "/login.html"
+    window.location.pathname === "/FrontEnd/login.html"
+  ) {
     loginHandler();
   }
 };

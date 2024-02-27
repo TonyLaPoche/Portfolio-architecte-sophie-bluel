@@ -1,11 +1,10 @@
-import { deleteWork } from "../authentification/handler/deleteHandler.js";
+import { deleteWork } from "../api/routes/deleteHandler.js";
 import {
   deleteWorkStatesById,
   getWorksStates,
 } from "../statements/stateManagers.js";
 
 const handleDeleteItem = (e) => {
-  e.preventDefault();
   const id = e.currentTarget.parentNode.getAttribute("data-id").split("-")[1];
   deleteWorkStatesById(id);
 };
@@ -38,6 +37,7 @@ export const workModalConstructor = (modalMain) => {
     button.className = "gabargeIcon";
 
     button.addEventListener("click", (e) => {
+      e.preventDefault();
       handleDeleteItem(e);
     });
 

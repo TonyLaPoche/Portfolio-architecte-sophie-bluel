@@ -1,9 +1,14 @@
-import { getWorks } from "../api/routes/getWorks.js";
 import { deleteWork } from "../authentification/handler/deleteHandler.js";
 import {
   deleteWorkStatesById,
   getWorksStates,
 } from "../statements/stateManagers.js";
+
+const handleDeleteItem = (e) => {
+  e.preventDefault();
+  const id = e.currentTarget.parentNode.getAttribute("data-id").split("-")[1];
+  deleteWorkStatesById(id);
+};
 
 /**
  * @async
@@ -32,18 +37,9 @@ export const workModalConstructor = (modalMain) => {
 
     button.className = "gabargeIcon";
 
-    button.onclick = (e) => {
-      const id = e.currentTarget.parentNode
-        .getAttribute("data-id")
-        .split("-")[1];
-      const deleted = deleteWorkStatesById(id);
-      console.log(deleted);
-
-      const elements = document.querySelectorAll(
-        "[data-id='works-" + works[i].id + "']"
-      );
-      elements.forEach((removeElement) => removeElement.remove());
-    };
+    button.addEventListener("click", (e) => {
+      handleDeleteItem(e);
+    });
 
     const trashIcon = document.createElement("i");
     trashIcon.className = "fa-solid fa-trash-can";

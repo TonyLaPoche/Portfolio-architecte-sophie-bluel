@@ -1,4 +1,4 @@
-import { callApi } from "../../api/utils/callApi.js";
+import { callApi } from "../utils/callApi.js";
 
 export const deleteWork = async (id) => {
   const url = `http://localhost:5678/api/works/${id}`;

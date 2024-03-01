@@ -1,12 +1,12 @@
-import { deleteWork } from "../api/routes/deleteHandler.js";
-import {
-  deleteWorkStatesById,
-  getWorksStates,
-} from "../statements/stateManagers.js";
+import { deleteWorkStatesById } from "../statements/stateManagers.js";
 
 const handleDeleteItem = (e) => {
-  const id = e.currentTarget.parentNode.getAttribute("data-id").split("-")[1];
+  const id = e.currentTarget.parentNode.parentNode
+    .getAttribute("data-id")
+    .split("-")[1];
   deleteWorkStatesById(id);
+  console.log("delete", id);
+  return;
 };
 
 /**
@@ -15,16 +15,15 @@ const handleDeleteItem = (e) => {
  * @param {HTMLElement} modalMain
  * @description Cette fonction permet de construire le contenu de la modal de la galerie photo. Elle récupère les données des oeuvres et les affiche dans la modal.
  */
-export const workModalConstructor = (modalMain) => {
-  const works = getWorksStates();
+export const workModalConstructor = (modalMain, works) => {
   const ul = document.createElement("ul");
   ul.className = "gallery-list";
   for (let i = 0; i < works.length; i++) {
     const li = document.createElement("li");
     li.className = "gallery-item";
+    li.setAttribute("data-id", "works-" + works[i].id); // rend unique l'id de chaque oeuvre
 
     const figure = document.createElement("figure");
-    figure.setAttribute("data-id", "works-" + works[i].id); // rend unique l'id de chaque oeuvre
     figure.setAttribute("data-title", works[i].title);
 
     const img = document.createElement("img");

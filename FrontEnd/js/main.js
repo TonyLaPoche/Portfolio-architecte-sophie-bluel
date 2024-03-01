@@ -1,97 +1,8 @@
 import { displayFilters } from "./services/displayModels/displayFilters.js";
 import { loginHandler } from "./services/authentification/handler/loginHandler.js";
 import { loginHandlerNav } from "./services/handlers/loginHandlerNav.js";
-import {
-  fetchAllCategories,
-  fetchAllWorks,
-} from "./services/statements/stateManagers.js";
 
-/**
- * ## ROUTER
- * ------------------------------------------------------------
- * Cette classe permet de gérer les routes de l'application.
- * Elle permet de charger une route, de naviguer vers une autre route
- * et de récupérer la route actuelle.
- * Elle utilise l'API History Web pour gérer la navigation.
- * @param {Array} routes - Liste des routes de l'application.
- * @param {string} routes.path - Chemin de la route.
- * @param {function} routes.callback - Fonction de callback appelée lorsque la route est atteinte.
- * @returns {RouterCustom} - Une instance de RouterCustom.
- * @throws {Error} - Lève une erreur si la route n'est pas trouvée.
- * @example
- * const routes = [
- *  { path: "/", callback: () => null, },
- *  { path: "/login.html", callback: () => null, },
- * ];
- * const router = new RouterCustom(routes);
- * router.loadRoute("/login.html");
- * router.navigateTo("/");
- * const currentRoute = router.getCurrentRoute();
- * console.log(currentRoute);
- * // Output: { path: "/", callback: ƒ }
- */
-class RouterCustom {
-  constructor(routes) {
-    this.routes = routes;
-    this._loadInitialRoute();
-  }
-
-  _getCurrentURL() {
-    const path = window.location.pathname;
-    return path;
-  }
-  _matchUrlToRoute(urlSegs) {
-    const matchedRoute = this.routes.find((route) => route.path === urlSegs[0]);
-    return matchedRoute;
-  }
-  _loadInitialRoute() {
-    const pathnameSplit = window.location.pathname.split("/FrontEnd");
-    const pathSegs = pathnameSplit.length > 1 ? pathnameSplit.slice(1) : "";
-    this.loadRoute(...pathSegs);
-  }
-  loadRoute(...urlSegs) {
-    const matchedRoute = this._matchUrlToRoute(urlSegs);
-    if (!matchedRoute) {
-      throw new Error("Route not found");
-    }
-    matchedRoute.callback();
-  }
-  navigateTo(path) {
-    window.history.pushState({}, "", path);
-    this.loadRoute(path);
-  }
-  getCurrentRoute() {
-    const path = this._getCurrentURL().split("/FrontEnd");
-    return this._matchUrlToRoute([path[1]]);
-  }
-}
-/**
- * ## ROUTES
- * ------------------------------------------------------------
- * Routes de l'application.
- * Chaque route est associée à une fonction de callback.
- * La fonction de callback est appelée lorsque la route est atteinte.
- * @type {Array} - Liste des routes de l'application.
- * @example
- * const routes = [
- * { path: "/", callback: () => null, },
- * { path: "/login.html", callback: () => null, },
- * ];
- */
-const routes = [
-  {
-    path: "/index.html",
-    callback: () => window.location.replace("/FrontEnd/"),
-  },
-  {
-    path: "/",
-    callback: () => null,
-  },
-  {
-    path: "/login.html",
-    callback: () => null,
-  },
-];
+import { initState } from "./services/statements/initState.js";
 
 /**
  * ## INITIALISATION
@@ -105,22 +16,19 @@ const routes = [
  * puis getWorks() pour récupérer les travaux et les afficher.
  */
 const init = async () => {
-  // const router = new RouterCustom(routes);
-  // const currentRoute = router.getCurrentRoute();
   if (
-    // (currentRoute && currentRoute.path === "/") ||
-    // currentRoute.path === "/index.html"
-    window.location.pathname === "/FrontEnd/" ||
-    window.location.pathname === "/FrontEnd/index.html"
+    window.location.pathname === "/" ||
+    window.location.pathname === "/index.html"
   ) {
+    console.log("index.html");
+    // Vérifie si l'utilisateur est connecté
     loginHandlerNav();
-    await fetchAllWorks();
-    await fetchAllCategories();
-    displayFilters();
-  } else if (
-    // currentRoute && currentRoute.path === "/login.html"
-    window.location.pathname === "/FrontEnd/login.html"
-  ) {
+    // initialise les filtres et les travaux
+    const { works, categories } = await initState();
+    displayFilters(categories);
+  } else if (window.location.pathname === "/login.html") {
+    //
+    console.log("login.html");
     loginHandler();
   }
 };

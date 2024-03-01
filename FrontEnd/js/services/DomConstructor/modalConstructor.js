@@ -1,5 +1,6 @@
 import { handleClose } from "../authentification/handler/modifyHandler.js";
 import { displayModal } from "../displayModels/displayModal.js";
+import { getWorksStates } from "../statements/stateManagers.js";
 import { workModalConstructor } from "./workModalConstructor.js";
 
 export const modalConstructor = () => {
@@ -37,7 +38,8 @@ export const modalConstructor = () => {
   const modalMain = document.createElement("div");
   modalMain.className = "modal-main";
 
-  workModalConstructor(modalMain);
+  let works = getWorksStates();
+  workModalConstructor(modalMain, works);
 
   const separator = document.createElement("hr");
   separator.className = "separator";

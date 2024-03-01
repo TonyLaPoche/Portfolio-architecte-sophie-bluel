@@ -443,6 +443,11 @@ footer nav ul {
   cursor: pointer;
 }
 
+.modal-head button > i {
+  font-size: 1.5rem;
+  color: black;
+}
+
 .gallery-list {
   display: flex;
   flex-wrap: wrap;
@@ -509,7 +514,7 @@ footer nav ul {
   color: white;
   background-color: #1d6154;
   padding: 10px 20px;
-  width: 180px;
+  width: 280px;
   text-align: center;
   border-radius: 60px;
 }

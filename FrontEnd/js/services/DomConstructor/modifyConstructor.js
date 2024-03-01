@@ -1,4 +1,4 @@
-import { handleOpen } from "../authentification/handler/modifyHandler.js";
+import { modalOpenHandler } from "../authentification/handler/modalOpenHandler.js";
 
 export const modifyConstructor = () => {
   const svgElement = document.createElementNS(
@@ -25,7 +25,7 @@ export const modifyConstructor = () => {
   buttonElement.setAttribute("name", "modify");
   buttonElement.setAttribute("type", "button");
   buttonElement.textContent = "modifier";
-  handleOpen(buttonElement);
+  modalOpenHandler(buttonElement);
 
   return { svgElement, buttonElement };
 };

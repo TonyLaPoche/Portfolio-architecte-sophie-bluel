@@ -5,9 +5,10 @@ const states = {
   // Gestionnaire d'états
   categories: [],
   works: [],
+  stepModal: 0,
 };
 
-/* CATEGORIES */
+/* CATEGORIES Statement */
 
 async function fetchAllCategories() {
   const awaitCategories = await getCategories();
@@ -22,7 +23,7 @@ function getCategoriesStates() {
   return states.categories;
 }
 
-/* WORKS */
+/* WORKS Statement */
 
 async function fetchAllWorks() {
   const data = await getWorks();
@@ -70,6 +71,16 @@ function deleteWorkStatesById(id) {
   deleteElementFromBDD(id);
 }
 
+/* Modal Step Statement */
+
+function setStepModal(step) {
+  states.stepModal = step;
+}
+
+function getStepModal() {
+  return states.stepModal;
+}
+
 export {
   fetchAllCategories,
   getCategoriesStates,
@@ -77,4 +88,6 @@ export {
   getWorksStatesByCategory,
   fetchAllWorks,
   deleteWorkStatesById,
+  setStepModal,
+  getStepModal,
 };

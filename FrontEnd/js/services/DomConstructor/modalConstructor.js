@@ -1,6 +1,7 @@
-import { handleClose } from "../authentification/handler/modifyHandler.js";
+import { modalCloseHandler } from "../authentification/handler/modalCloseHandler.js";
 import { displayModal } from "../displayModels/displayModal.js";
-import { getWorksStates } from "../statements/stateManagers.js";
+import { stepModalHandler } from "../handlers/StepModalHandler.js";
+import { getStepModal, getWorksStates } from "../statements/stateManagers.js";
 import { workModalConstructor } from "./workModalConstructor.js";
 
 export const modalConstructor = () => {
@@ -15,8 +16,15 @@ export const modalConstructor = () => {
   const modalContent = document.createElement("div");
   modalContent.className = "modal-content";
   modalContent.id = "modal-content";
+
   const modalHead = document.createElement("div");
   modalHead.className = "modal-head";
+  const divHeadButton = document.createElement("div");
+  divHeadButton.className = "head-buttons";
+  divHeadButton.style.display = "flex";
+  divHeadButton.style.flexDirection = "row-reverse";
+
+  modalHead.appendChild(divHeadButton);
 
   const closeButton = document.createElement("button");
   closeButton.type = "button";
@@ -25,19 +33,26 @@ export const modalConstructor = () => {
   const closeIcon = document.createElement("i");
   closeIcon.className = "fa-solid fa-xmark";
 
+  const previousButton = document.createElement("button");
+  previousButton.type = "button";
+  previousButton.className = "previous";
+  const previousIcon = document.createElement("i");
+  previousIcon.className = "fa-solid fa-arrow-left";
+  previousButton.appendChild(previousIcon);
+
   closeButton.appendChild(closeIcon);
 
-  handleClose(closeButton);
+  modalCloseHandler(closeButton);
 
   const title = document.createElement("h2");
   title.textContent = "Galerie photo";
 
-  modalHead.appendChild(closeButton);
+  divHeadButton.appendChild(closeButton);
   modalHead.appendChild(title);
 
   const modalMain = document.createElement("div");
-  modalMain.className = "modal-main";
 
+  modalMain.className = "modal-main";
   let works = getWorksStates();
   workModalConstructor(modalMain, works);
 
@@ -50,6 +65,37 @@ export const modalConstructor = () => {
   const addButton = document.createElement("button");
   addButton.type = "button";
   addButton.textContent = "Ajouter une photo";
+  addButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log("click");
+    stepModalHandler("adding");
+    console.log("stepModal ADDING", getStepModal());
+    document.querySelector(".modal-main").innerHTML = "";
+    if (getStepModal() === "adding") {
+      divHeadButton.prepend(previousButton);
+      divHeadButton.style.flexDirection = "row";
+      divHeadButton.style.justifyContent = "space-between";
+      title.textContent = "Ajout photo";
+      addButton.disabled = true;
+      addButton.textContent = "valider";
+    }
+  });
+
+  previousButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    stepModalHandler("gallery");
+    console.log("stepModal PREVIOUS", getStepModal());
+    if (getStepModal() === "gallery") {
+      divHeadButton.style.flexDirection = "row-reverse";
+      divHeadButton.style.justifyContent = "flex-start";
+      divHeadButton.removeChild(previousButton);
+      title.textContent = "Galerie photo";
+      addButton.textContent = "Ajouter une photo";
+      addButton.disabled = false;
+    }
+    document.querySelector(".modal-main").innerHTML = "";
+    workModalConstructor(modalMain, works);
+  });
 
   modalFooter.appendChild(addButton);
 

@@ -433,14 +433,20 @@ footer nav ul {
 .modal-head button {
   display: block;
   width: fit-content;
-  align-self: flex-end;
-  text-align: right;
   background-color: transparent;
   border: none;
   font-weight: bolder;
   font-size: 1rem;
   padding: 0.5rem;
   cursor: pointer;
+}
+
+.close {
+  align-self: flex-end;
+}
+
+.previous {
+  align-self: flex-start;
 }
 
 .modal-head button > i {
@@ -521,4 +527,9 @@ footer nav ul {
 
 .modal-footer button:hover {
   cursor: pointer;
+}
+
+.modal-footer button:disabled {
+  background-color: #b3b3b3;
+  cursor: not-allowed;
 }

@@ -27,7 +27,6 @@ const init = async () => {
     const { works, categories } = await initState();
     displayFilters(categories);
   } else if (window.location.pathname === "/login.html") {
-    //
     console.log("login.html");
     loginHandler();
   }

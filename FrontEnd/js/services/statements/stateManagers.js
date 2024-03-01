@@ -1,6 +1,5 @@
 import { getCategories } from "../api/routes/getCategories.js";
 import { getWorks } from "../api/routes/getWorks.js";
-import { deleteWork } from "../api/routes/deleteHandler.js";
 
 const states = {
   // Gestionnaire d'états
@@ -11,28 +10,30 @@ const states = {
 /* CATEGORIES */
 
 async function fetchAllCategories() {
-  if (states.categories.length === 0) {
-    // Vérifie si les catégories sont déjà chargées
-    states.categories = await getCategories();
-  }
+  const awaitCategories = await getCategories();
+  states.categories = awaitCategories;
   return states.categories;
 }
 
 function getCategoriesStates() {
+  if (states.categories.length === 0) {
+    return fetchAllCategories();
+  }
   return states.categories;
 }
 
 /* WORKS */
 
 async function fetchAllWorks() {
-  if (states.works.length === 0) {
-    // Vérifie si les travaux sont déjà chargés
-    states.works = await getWorks();
-  }
+  const data = await getWorks();
+  states.works = data;
   return states.works;
 }
 
 function getWorksStates() {
+  if (states.works.length === 0) {
+    return fetchAllWorks();
+  }
   return states.works;
 }
 
@@ -40,8 +41,10 @@ function getWorksStatesByCategory(category) {
   if (category === "all") {
     return states.works;
   }
-  let works = states.works.filter((work) => work.category.name === category);
-  return works;
+  let worksfiltered = states.works.filter(
+    (work) => work.category.name === category
+  );
+  return worksfiltered;
 }
 
 async function deleteElementFromBDD(id) {
@@ -51,7 +54,8 @@ async function deleteElementFromBDD(id) {
       Authorization: `Bearer ${sessionStorage.getItem("token")}`,
     },
   });
-  const response = await data.json();
+  console.log("delete");
+  const response = await data;
   console.log(response);
 }
 
@@ -62,7 +66,21 @@ function deleteWorkStatesById(id) {
   document.querySelectorAll(`[data-id="works-${id}"]`).forEach((el) => {
     el.remove();
   });
+  console.log("states AJOUT");
   deleteElementFromBDD(id);
+  // const bodyFormData = new FormData();
+  // bodyFormData.append("image", "https://fakeimg.pl/300/");
+  // bodyFormData.append("title", "MON TITRE");
+  // bodyFormData.append("category", 1);
+  // fetch(`http://localhost:5678/api/works`, {
+  //   method: "POST",
+  //   body: bodyFormData,
+
+  //   headers: {
+  //     Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+  //     "Content-Type": "multipart/form-data",
+  //   },
+  // });
 }
 
 export {

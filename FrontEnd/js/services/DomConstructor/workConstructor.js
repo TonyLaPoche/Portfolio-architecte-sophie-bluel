@@ -5,6 +5,7 @@
  */
 export const constructWork = (work) => {
   const workDiv = document.createElement("div");
+  workDiv.setAttribute("data-id", "works-" + work.id);
   workDiv.classList.add("work");
   workDiv.innerHTML = `
                       <figure data-id="works-${work.id}">

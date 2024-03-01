@@ -68,19 +68,6 @@ function deleteWorkStatesById(id) {
   });
   console.log("states AJOUT");
   deleteElementFromBDD(id);
-  // const bodyFormData = new FormData();
-  // bodyFormData.append("image", "https://fakeimg.pl/300/");
-  // bodyFormData.append("title", "MON TITRE");
-  // bodyFormData.append("category", 1);
-  // fetch(`http://localhost:5678/api/works`, {
-  //   method: "POST",
-  //   body: bodyFormData,
-
-  //   headers: {
-  //     Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-  //     "Content-Type": "multipart/form-data",
-  //   },
-  // });
 }
 
 export {

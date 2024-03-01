@@ -8,7 +8,7 @@ export const deleteWork = async (id) => {
       authorization: `Bearer ${sessionStorage.getItem("token")}`,
     },
   };
-  const data = await fetch(url, options);
+  const data = await callApi(url, options);
 
   return data;
 };

@@ -1,6 +1,7 @@
 import { modalCloseHandler } from "../authentification/handler/modalCloseHandler.js";
+import { modalStepGalleryHandler } from "../authentification/handler/modalStepGalleryHandler.js";
 import { displayModal } from "../displayModels/displayModal.js";
-import { stepModalHandler } from "../handlers/StepModalHandler.js";
+import { setStepModalHandler } from "../handlers/StepModalHandler.js";
 import { getStepModal, getWorksStates } from "../statements/stateManagers.js";
 import { modalHeadConstructor } from "./modalDom/modalHeadConstructor.js";
 import { workModalConstructor } from "./workModalConstructor.js";
@@ -24,7 +25,7 @@ export const modalConstructor = () => {
   addButton.addEventListener("click", (e) => {
     e.preventDefault();
     console.log("click");
-    stepModalHandler("adding");
+    setStepModalHandler("adding");
     console.log("stepModal =", getStepModal());
     document.querySelector(".modal-main").innerHTML = "";
     if (getStepModal() === "adding") {
@@ -52,7 +53,6 @@ export const modalConstructor = () => {
   const closeIcon = document.createElement("i");
   closeIcon.className = "fa-solid fa-xmark";
   closeButton.appendChild(closeIcon);
-  modalCloseHandler(closeButton);
 
   const previousButton = document.createElement("button");
   previousButton.type = "button";
@@ -60,22 +60,6 @@ export const modalConstructor = () => {
   const previousIcon = document.createElement("i");
   previousIcon.className = "fa-solid fa-arrow-left";
   previousButton.appendChild(previousIcon);
-  previousButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    stepModalHandler("gallery");
-    console.log("stepModal PREVIOUS", getStepModal());
-    if (getStepModal() === "gallery") {
-      divHeadButton.style.flexDirection = "row-reverse";
-      divHeadButton.style.justifyContent = "flex-start";
-      divHeadButton.removeChild(previousButton);
-      title.textContent = "Galerie photo";
-      addButton.textContent = "Ajouter une photo";
-      addButton.disabled = false;
-    }
-    document.querySelector(".modal-main").innerHTML = "";
-    workModalConstructor(modalMain, works);
-  });
-
   const title = document.createElement("h2");
   title.textContent = "Galerie photo";
 
@@ -101,5 +85,17 @@ export const modalConstructor = () => {
 
   modal.appendChild(modalContent);
 
+  // HANDLERS
+
+  modalCloseHandler(closeButton);
+
+  modalStepGalleryHandler(
+    previousButton,
+    divHeadButton,
+    title,
+    addButton,
+    modalMain,
+    works
+  );
   return modal;
 };

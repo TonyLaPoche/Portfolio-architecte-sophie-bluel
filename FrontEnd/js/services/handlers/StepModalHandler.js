@@ -1,6 +1,6 @@
 import { getStepModal, setStepModal } from "../statements/stateManagers.js";
 
-export const stepModalHandler = (newState) => {
+export const setStepModalHandler = (newState) => {
   setStepModal(newState);
   return getStepModal();
 };

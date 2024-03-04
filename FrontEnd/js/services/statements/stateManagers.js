@@ -1,11 +1,30 @@
 import { getCategories } from "../api/routes/getCategories.js";
 import { getWorks } from "../api/routes/getWorks.js";
 
+/**
+ * @typedef {Object} States - Objet représentant l'état de l'application.
+ * @property {{ id: number; name: string; }[]} categories - Liste des catégories. Initialement vide, mais remplie par les appels API.
+ * @property {{ id: number; title: string; imageUrl: string; categoryId: number; userId: number; category: { id: number; name: string; } }[]} works - Liste des travaux. Initialement vide, mais remplie par les appels API.
+ * @property {number} stepModal - Étape du processus de modal.
+ */
 const states = {
-  // Gestionnaire d'états
+  /**
+   * Liste des catégories. Initialement vide, mais remplie par les appels API.
+   * @type {{ id: number; name: string; }[]}
+   */
   categories: [],
+
+  /**
+   * Liste des travaux. Initialement vide, mais remplie par les appels API.
+   * @type {{ id: number; title: string; imageUrl: string; categoryId: number; userId: number; category: { id: number; name: string; } }[]}
+   */
   works: [],
-  stepModal: 0,
+
+  /**
+   * Étape du processus de modal.
+   * @type {string}
+   */
+  stepModal: "gallery",
 };
 
 /* CATEGORIES Statement */

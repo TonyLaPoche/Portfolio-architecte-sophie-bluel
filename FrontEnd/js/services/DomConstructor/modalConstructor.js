@@ -71,7 +71,7 @@ export const modalConstructor = () => {
 
   modal.appendChild(modalContent);
 
-  // HANDLERS
+  // HANDLERS //
   // ( ouverture/fermeture de la modal, ajout d'une photo, retour à l'étape précédente )
 
   modalCloseHandler(closeButton);

@@ -23,21 +23,6 @@ export const modalConstructor = () => {
   const addButton = document.createElement("button");
   addButton.type = "button";
   addButton.textContent = "Ajouter une photo";
-  // addButton.addEventListener("click", (e) => {
-  //   e.preventDefault();
-  //   console.log("click");
-  //   setStepModalHandler("adding");
-  //   console.log("stepModal =", getStepModal());
-  //   document.querySelector(".modal-main").innerHTML = "";
-  //   if (getStepModal() === "adding") {
-  //     divHeadButton.prepend(previousButton);
-  //     divHeadButton.style.flexDirection = "row";
-  //     divHeadButton.style.justifyContent = "space-between";
-  //     title.textContent = "Ajout photo";
-  //     addButton.disabled = true;
-  //     addButton.textContent = "valider";
-  //   }
-  // });
 
   const modalHead = document.createElement("div");
   modalHead.className = "modal-head";

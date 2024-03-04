@@ -22,7 +22,6 @@ export const modalStepGalleryHandler = (
   button.addEventListener("click", (e) => {
     e.preventDefault();
     setStepModalHandler("gallery");
-    console.log("stepModal PREVIOUS", getStepModal());
     if (getStepModal() === "gallery") {
       divHeadButton.style.flexDirection = "row-reverse";
       divHeadButton.style.justifyContent = "flex-start";

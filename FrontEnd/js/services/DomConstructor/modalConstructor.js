@@ -1,4 +1,5 @@
 import { modalCloseHandler } from "../authentification/handler/modalCloseHandler.js";
+import { modalStepAddingHandler } from "../authentification/handler/modalStepAddingHandler.js";
 import { modalStepGalleryHandler } from "../authentification/handler/modalStepGalleryHandler.js";
 import { displayModal } from "../displayModels/displayModal.js";
 import { setStepModalHandler } from "../handlers/StepModalHandler.js";
@@ -22,21 +23,21 @@ export const modalConstructor = () => {
   const addButton = document.createElement("button");
   addButton.type = "button";
   addButton.textContent = "Ajouter une photo";
-  addButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    console.log("click");
-    setStepModalHandler("adding");
-    console.log("stepModal =", getStepModal());
-    document.querySelector(".modal-main").innerHTML = "";
-    if (getStepModal() === "adding") {
-      divHeadButton.prepend(previousButton);
-      divHeadButton.style.flexDirection = "row";
-      divHeadButton.style.justifyContent = "space-between";
-      title.textContent = "Ajout photo";
-      addButton.disabled = true;
-      addButton.textContent = "valider";
-    }
-  });
+  // addButton.addEventListener("click", (e) => {
+  //   e.preventDefault();
+  //   console.log("click");
+  //   setStepModalHandler("adding");
+  //   console.log("stepModal =", getStepModal());
+  //   document.querySelector(".modal-main").innerHTML = "";
+  //   if (getStepModal() === "adding") {
+  //     divHeadButton.prepend(previousButton);
+  //     divHeadButton.style.flexDirection = "row";
+  //     divHeadButton.style.justifyContent = "space-between";
+  //     title.textContent = "Ajout photo";
+  //     addButton.disabled = true;
+  //     addButton.textContent = "valider";
+  //   }
+  // });
 
   const modalHead = document.createElement("div");
   modalHead.className = "modal-head";
@@ -86,8 +87,11 @@ export const modalConstructor = () => {
   modal.appendChild(modalContent);
 
   // HANDLERS
+  // ( ouverture/fermeture de la modal, ajout d'une photo, retour à l'étape précédente )
 
   modalCloseHandler(closeButton);
+
+  modalStepAddingHandler(addButton, divHeadButton, title, previousButton);
 
   modalStepGalleryHandler(
     previousButton,

@@ -28,6 +28,8 @@ export const modalConstructor = () => {
   // Modal Head
   const modalHead = document.createElement("div");
   modalHead.className = "modal-head";
+
+  // Modal Head Buttons
   const divHeadButton = document.createElement("div");
   divHeadButton.className = "head-buttons";
   divHeadButton.style.display = "flex";

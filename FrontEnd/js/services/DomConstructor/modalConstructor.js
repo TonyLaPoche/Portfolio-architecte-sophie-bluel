@@ -57,38 +57,18 @@ export const modalConstructor = () => {
   divHeadButton.appendChild(closeButton);
   modalHead.appendChild(title);
 
-  // Modal Main - GALLERY STEP
+  let works = getWorksStates();
   const modalMain = document.createElement("div");
   modalMain.className = "modal-main";
-  let works = getWorksStates();
-  workModalMainConstructor(modalMain, works);
+
+  let currentStep = "gallery";
+  if (currentStep === "gallery") {
+    // Modal Main - GALLERY STEP
+    workModalMainConstructor(modalMain, works);
+  } else {
+  }
 
   // Modal Main - ADDING STEP
-  // const modalMain = document.createElement("div");
-  // modalMain.className = "modal-main";
-  // modalMain.innerHTML = `
-  // <form id="form-add-work" class="form-add-work">
-  //   <div class="form-group">
-  //     <label for="title">Titre</label>
-  //     <input type="text" id="title" name="title" required />
-  //   </div>
-  //   <div class="form-group">
-  //     <label for="imageUrl">Url de l'image</label>
-  //     <input type="url" id="imageUrl" name="imageUrl" required />
-  //   </div>
-  //   <div class="form-group">
-  //     <label for="category">Catégorie</label>
-  //     <select id="category" name="category" required>
-  //       <option value="1">Portrait</option>
-  //       <option value="2">Paysage</option>
-  //       <option value="3">Ville</option>
-  //     </select>
-  //   </div>
-  //   <div class="form-group">
-  //     <button type="submit">Ajouter</button>
-  //   </div>
-  // </form>
-  // `;
 
   // separator
   const separator = document.createElement("hr");

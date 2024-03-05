@@ -101,6 +101,8 @@ function deleteWorkStatesById(id) {
   deleteElementFromBDD(id);
 }
 
+// New Work Statement
+
 function setNewWorkStates(key, value) {
   states.newWork[key] = value;
   console.log(states.newWork);
@@ -150,4 +152,8 @@ export {
   deleteWorkStatesById,
   setStepModal,
   getStepModal,
+  setNewWorkStates,
+  getNewWorkStates,
+  newWorkHasValidData,
+  resetNewWorkStates,
 };

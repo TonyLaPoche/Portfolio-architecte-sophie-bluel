@@ -1,3 +1,4 @@
+import workModalAddingConstructor from "../../DomConstructor/workModalAddingConstructor.js";
 import { setStepModalHandler } from "../../handlers/StepModalHandler.js";
 import { getStepModal } from "../../statements/stateManagers.js";
 
@@ -26,6 +27,7 @@ export const modalStepAddingHandler = (
       button.textContent = "valider";
     }
     document.querySelector(".modal-main").innerHTML = "";
+    workModalAddingConstructor(document.querySelector(".modal-main"));
+    // Adding a work modal Constructor
   });
-  // Adding a work modal Constructor
 };

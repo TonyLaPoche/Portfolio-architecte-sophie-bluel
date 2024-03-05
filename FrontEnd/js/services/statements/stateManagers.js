@@ -25,6 +25,17 @@ const states = {
    * @type {string}
    */
   stepModal: "gallery",
+
+  /**
+   * Nouveau travail à ajouter.
+   * @type {{ title: string; imageUrl: string; categoryId: string; userId: string; }}
+   */
+  newWork: {
+    title: "",
+    imageUrl: "",
+    categoryId: "",
+    userId: "",
+  },
 };
 
 /* CATEGORIES Statement */
@@ -88,6 +99,36 @@ function deleteWorkStatesById(id) {
   });
   console.log("states AJOUT");
   deleteElementFromBDD(id);
+}
+
+function setNewWorkStates(key, value) {
+  states.newWork[key] = value;
+  console.log(states.newWork);
+}
+
+function getNewWorkStates() {
+  return states.newWork;
+}
+
+function newWorkHasValidData() {
+  const newWork = getNewWorkStates();
+  if (
+    newWork.title === "" ||
+    newWork.imageUrl === "" ||
+    newWork.categoryId === ""
+  ) {
+    return false;
+  }
+  return true;
+}
+
+function resetNewWorkStates() {
+  states.newWork = {
+    title: "",
+    imageUrl: "",
+    categoryId: "",
+    userId: "",
+  };
 }
 
 /* Modal Step Statement */

@@ -1,4 +1,4 @@
-import { workModalConstructor } from "../../DomConstructor/workModalConstructor.js";
+import { workModalMainConstructor } from "../../DomConstructor/workModalMainConstructor.js";
 import { setStepModalHandler } from "../../handlers/StepModalHandler.js";
 import { getStepModal } from "../../statements/stateManagers.js";
 
@@ -31,6 +31,6 @@ export const modalStepGalleryHandler = (
       addButton.disabled = false;
     }
     document.querySelector(".modal-main").innerHTML = "";
-    workModalConstructor(modalMain, works);
+    workModalMainConstructor(modalMain, works);
   });
 };

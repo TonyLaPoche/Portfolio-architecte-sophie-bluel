@@ -15,7 +15,7 @@ const handleDeleteItem = (e) => {
  * @param {HTMLElement} modalMain
  * @description Cette fonction permet de construire le contenu de la modal de la galerie photo. Elle récupère les données des oeuvres et les affiche dans la modal.
  */
-export const workModalConstructor = (modalMain, works) => {
+export const workModalMainConstructor = (modalMain, works) => {
   const ul = document.createElement("ul");
   ul.className = "gallery-list";
   for (let i = 0; i < works.length; i++) {

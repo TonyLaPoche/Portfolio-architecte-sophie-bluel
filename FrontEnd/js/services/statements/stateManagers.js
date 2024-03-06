@@ -6,6 +6,7 @@ import { getWorks } from "../api/routes/getWorks.js";
  * @property {{ id: number; name: string; }[]} categories - Liste des catégories. Initialement vide, mais remplie par les appels API.
  * @property {{ id: number; title: string; imageUrl: string; categoryId: number; userId: number; category: { id: number; name: string; } }[]} works - Liste des travaux. Initialement vide, mais remplie par les appels API.
  * @property {number} stepModal - Étape du processus de modal.
+ * @property {{ title: string; imageUrl: string; categoryId: string; userId: string; }} newWork - Nouveau travail à ajouter.
  */
 const states = {
   /**

@@ -1,10 +1,16 @@
+import { modalAddingButtonHandler } from "../authentification/handler/modalAddingButton.js";
 import { getCategoriesStates } from "../statements/stateManagers.js";
 
 const workModalAddingConstructor = (modalMain) => {
+  // initie un objet FormData pour envoyer les données du formulaire
+  const formData = new FormData();
+
   // Créer le formulaire
   const form = document.createElement("form");
   form.id = "form-add-work";
   form.className = "form-add-work";
+  form.method = "post";
+  form.enctype = "multipart/form-data";
 
   // Ajouter la partie "Ajouter une photo" au formulaire
   const addPictureDiv = document.createElement("div");
@@ -57,6 +63,9 @@ const workModalAddingConstructor = (modalMain) => {
     img.style.height = "200px";
     img.style.objectFit = "contain";
 
+    // ajoute l'image a formData pour l'envoyer avec le formulaire
+    formData.append("image", file);
+
     // nettoie la div pour éviter d'afficher plusieurs images
     addPictureDiv.innerHTML = "";
     addPictureDiv.style.padding = "0";
@@ -93,6 +102,34 @@ const workModalAddingConstructor = (modalMain) => {
   form.appendChild(titleFormGroup);
   form.appendChild(categoryFormGroup);
 
+  form.addEventListener("change", (e) => {
+    switch (e.target.id) {
+      case "title":
+        console.log("title");
+        console.log(e.target.value);
+        formData.append("title", e.target.value);
+        break;
+      case "category":
+        console.log("category");
+        console.log(e.target.value);
+        formData.append("category", e.target.value);
+        break;
+      default:
+        break;
+    }
+  });
+
+  form.addEventListener("submit", (e) => {
+    modalAddingButtonHandler(e, formData);
+    fetch("http://localhost:5678/api/works", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+      body: formData,
+    });
+  });
+
   // Ajouter le formulaire à la div principale
   modalMain.appendChild(form);
 };
@@ -105,11 +142,14 @@ function createFormGroup(id, label, type, required) {
   const formGroupLabel = document.createElement("label");
   formGroupLabel.setAttribute("for", id);
   formGroupLabel.textContent = label;
+  formGroupDiv.appendChild(formGroupLabel);
 
   const formGroupInput = document.createElement("input");
   formGroupInput.id = id;
   formGroupInput.name = id;
   formGroupInput.type = type;
+  formGroupInput.className = "form-control";
+
   if (required) {
     formGroupInput.required = true;
   }
@@ -120,13 +160,17 @@ function createFormGroup(id, label, type, required) {
     select.id = id;
     select.name = id;
     select.required = true;
+    select.className = "form-control";
 
-    const options = getCategoriesStates();
-    select.appendChild(document.createElement("option")); // Ajoutez une option vide
-    for (let i = 0; i < options.length; i++) {
+    const categoriesDTO = getCategoriesStates();
+    const optionEmpty = document.createElement("option");
+    optionEmpty.value = "";
+    optionEmpty.className = "form-control-select";
+    select.appendChild(optionEmpty); // Ajoutez une option vide
+    for (let i = 0; i < categoriesDTO.length; i++) {
       const option = document.createElement("option");
-      option.value = options[i].id;
-      option.textContent = options[i].name;
+      option.value = categoriesDTO[i].id;
+      option.textContent = categoriesDTO[i].name;
       select.appendChild(option);
     }
 
@@ -134,8 +178,6 @@ function createFormGroup(id, label, type, required) {
   } else {
     formGroupDiv.appendChild(formGroupInput);
   }
-
-  formGroupDiv.appendChild(formGroupLabel);
 
   return formGroupDiv;
 }

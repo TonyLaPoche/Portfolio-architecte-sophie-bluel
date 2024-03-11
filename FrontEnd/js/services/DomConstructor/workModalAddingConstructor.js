@@ -173,7 +173,6 @@ function createFormGroup(id, label, type, required) {
       option.textContent = categoriesDTO[i].name;
       select.appendChild(option);
     }
-
     formGroupDiv.appendChild(select);
   } else {
     formGroupDiv.appendChild(formGroupInput);

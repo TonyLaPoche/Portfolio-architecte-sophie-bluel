@@ -26,8 +26,9 @@ export const modalStepAddingHandler = (
       button.disabled = true;
       button.textContent = "valider";
     }
-    document.querySelector(".modal-main").innerHTML = "";
-    workModalAddingConstructor(document.querySelector(".modal-main"));
+    const modalMain = document.querySelector(".modal-main");
+    modalMain.innerHTML = "";
+    workModalAddingConstructor(modalMain);
     // Adding a work modal Constructor
   });
 };

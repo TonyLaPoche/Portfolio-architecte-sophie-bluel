@@ -596,14 +596,8 @@ select::after {
   border: 1px solid #b3b3b3;
   opacity: 0.5;
 }
-.modal-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0;
-}
 
-.modal-footer button {
+.add {
   font-family: "Syne";
   font-weight: 700;
   color: white;
@@ -614,11 +608,18 @@ select::after {
   border-radius: 60px;
 }
 
-.modal-footer button:hover {
+.add:hover {
   cursor: pointer;
 }
 
-.modal-footer button:disabled {
+.add:disabled {
   background-color: #b3b3b3;
   cursor: not-allowed;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
 }

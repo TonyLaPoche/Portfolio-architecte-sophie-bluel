@@ -1,6 +1,7 @@
 import { workModalMainConstructor } from "../../DomConstructor/workModalMainConstructor.js";
+import { displayWorks } from "../../displayModels/displayWorks.js";
 import { setStepModalHandler } from "../../handlers/StepModalHandler.js";
-import { getStepModal } from "../../statements/stateManagers.js";
+import { fetchAllWorks, getStepModal } from "../../statements/stateManagers.js";
 
 /**
  *
@@ -16,11 +17,11 @@ export const modalStepGalleryHandler = (
   divHeadButton, // Header de la modal
   title, // titre de la modal
   addButton, // Bouton d'ajout de photo contenu dans le footer de la modal
-  modalMain, // ELEMENT HTML <div> de la modal
-  works // Liste des oeuvres
+  modalMain // ELEMENT HTML <div> de la modal
 ) => {
-  button.addEventListener("click", (e) => {
+  button.addEventListener("click", async (e) => {
     e.preventDefault();
+    const works = await fetchAllWorks();
     setStepModalHandler("gallery");
     if (getStepModal() === "gallery") {
       divHeadButton.style.flexDirection = "row-reverse";
@@ -32,5 +33,6 @@ export const modalStepGalleryHandler = (
     }
     document.querySelector(".modal-main").innerHTML = "";
     workModalMainConstructor(modalMain, works);
+    displayWorks(works);
   });
 };

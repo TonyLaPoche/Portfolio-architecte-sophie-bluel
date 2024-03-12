@@ -1,6 +1,11 @@
 import workModalAddingConstructor from "../../DomConstructor/workModalAddingConstructor.js";
-import { setStepModalHandler } from "../../handlers/StepModalHandler.js";
-import { getStepModal } from "../../statements/stateManagers.js";
+import { callApi } from "../../api/utils/callApi.js";
+import {
+  addWorkStates,
+  getNewWorkStates,
+  getStepModal,
+  newWorkHasValidData,
+} from "../../statements/stateManagers.js";
 
 /**
  *
@@ -15,20 +20,33 @@ export const modalStepAddingHandler = (
   title, // titre de la modal
   previousButton // Bouton précédent
 ) => {
-  button.addEventListener("click", (e) => {
+  button.addEventListener("click", async (e) => {
     e.preventDefault();
-    setStepModalHandler("adding");
-    if (getStepModal() === "adding") {
-      divHeadButton.prepend(previousButton);
-      divHeadButton.style.flexDirection = "row";
-      divHeadButton.style.justifyContent = "space-between";
-      title.textContent = "Ajout photo";
-      button.disabled = true;
-      button.textContent = "valider";
-    }
+    divHeadButton.prepend(previousButton);
+    divHeadButton.style.flexDirection = "row";
+    divHeadButton.style.justifyContent = "space-between";
+    title.textContent = "Ajout photo";
+    button.disabled = true;
+    button.textContent = "valider";
     const modalMain = document.querySelector(".modal-main");
     modalMain.innerHTML = "";
     workModalAddingConstructor(modalMain);
+
     // Adding a work modal Constructor
+    if (getStepModal() === "validation") {
+      if (newWorkHasValidData()) {
+        const newWork = getNewWorkStates();
+        const response = await fetch("http://localhost:5678/api/works", {
+          method: "POST",
+          body: newWork,
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+          },
+        });
+        const data = await response.json();
+        addWorkStates(data);
+        previousButton.click();
+      }
+    }
   });
 };

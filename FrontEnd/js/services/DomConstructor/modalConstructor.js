@@ -3,6 +3,7 @@ import { modalStepAddingHandler } from "../authentification/handler/modalStepAdd
 import { modalStepGalleryHandler } from "../authentification/handler/modalStepGalleryHandler.js";
 import { displayModal } from "../displayModels/displayModal.js";
 import { getWorksStates } from "../statements/stateManagers.js";
+import workModalAddingConstructor from "./workModalAddingConstructor.js";
 import { workModalMainConstructor } from "./workModalMainConstructor.js";
 
 export const modalConstructor = () => {
@@ -24,6 +25,7 @@ export const modalConstructor = () => {
   const addButton = document.createElement("button");
   addButton.type = "button";
   addButton.textContent = "Ajouter une photo";
+  addButton.className = "add";
 
   // Modal Head
   const modalHead = document.createElement("div");
@@ -65,10 +67,12 @@ export const modalConstructor = () => {
   if (currentStep === "gallery") {
     // Modal Main - GALLERY STEP
     workModalMainConstructor(modalMain, works);
-  } else {
   }
 
   // Modal Main - ADDING STEP
+  if (currentStep === "adding") {
+    workModalAddingConstructor(modalMain);
+  }
 
   // separator
   const separator = document.createElement("hr");
@@ -100,8 +104,7 @@ export const modalConstructor = () => {
     divHeadButton,
     title,
     addButton,
-    modalMain,
-    works
+    modalMain
   );
   return modal;
 };

@@ -1,10 +1,12 @@
-import { modalAddingButtonHandler } from "../authentification/handler/modalAddingButton.js";
-import { getCategoriesStates } from "../statements/stateManagers.js";
+import { setStepModalHandler } from "../handlers/StepModalHandler.js";
+
+import {
+  getCategoriesStates,
+  newWorkHasValidData,
+  setNewWorkStates,
+} from "../statements/stateManagers.js";
 
 const workModalAddingConstructor = (modalMain) => {
-  // initie un objet FormData pour envoyer les données du formulaire
-  const formData = new FormData();
-
   // Créer le formulaire
   const form = document.createElement("form");
   form.id = "form-add-work";
@@ -38,15 +40,12 @@ const workModalAddingConstructor = (modalMain) => {
   addPictureInput.name = "file";
   addPictureInput.accept = ".jpg, .png";
   addPictureInput.addEventListener("click", (e) => {
-    console.log("click input");
     e.stopPropagation();
   });
 
   // Ecouteur d'événement sur l'input permettant de choisir une photo a ajouter au formulaire
   addPictureInput.addEventListener("change", (e) => {
-    console.log("change input");
     const file = e.target.files[0];
-    console.log(file);
     // si le fichier est trop lourd, on alerte l'utilisateur et on vide l'input pour qu'il puisse choisir une autre photo
     if (file.size > 4000000) {
       alert("Fichier trop lourd");
@@ -64,8 +63,8 @@ const workModalAddingConstructor = (modalMain) => {
     img.style.objectFit = "contain";
 
     // ajoute l'image a formData pour l'envoyer avec le formulaire
-    formData.append("image", file);
-
+    // formData.append("image", file);
+    setNewWorkStates("image", file);
     // nettoie la div pour éviter d'afficher plusieurs images
     addPictureDiv.innerHTML = "";
     addPictureDiv.style.padding = "0";
@@ -79,7 +78,6 @@ const workModalAddingConstructor = (modalMain) => {
   // met en place l'écouteur d'événement sur le bouton englobant le label et l'input et permettant de choisir une photo a ajouter au formulaire
   buttonGlobal.addEventListener("click", (e) => {
     e.preventDefault();
-    console.log("Ajouter une photo");
     addPictureInput.click();
   });
   addPictureDiv.appendChild(buttonGlobal);
@@ -102,32 +100,25 @@ const workModalAddingConstructor = (modalMain) => {
   form.appendChild(titleFormGroup);
   form.appendChild(categoryFormGroup);
 
+  const button = document.querySelector(".add");
+
   form.addEventListener("change", (e) => {
     switch (e.target.id) {
       case "title":
-        console.log("title");
-        console.log(e.target.value);
-        formData.append("title", e.target.value);
+        setNewWorkStates("title", e.target.value);
         break;
       case "category":
-        console.log("category");
-        console.log(e.target.value);
-        formData.append("category", e.target.value);
+        setNewWorkStates("category", e.target.value);
         break;
       default:
         break;
     }
-  });
-
-  form.addEventListener("submit", (e) => {
-    modalAddingButtonHandler(e, formData);
-    fetch("http://localhost:5678/api/works", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-      },
-      body: formData,
-    });
+    if (newWorkHasValidData()) {
+      setStepModalHandler("validation");
+      button.disabled = false;
+    } else {
+      button.disabled = true;
+    }
   });
 
   // Ajouter le formulaire à la div principale
@@ -163,10 +154,13 @@ function createFormGroup(id, label, type, required) {
     select.className = "form-control";
 
     const categoriesDTO = getCategoriesStates();
+
     const optionEmpty = document.createElement("option");
-    optionEmpty.value = "";
-    optionEmpty.className = "form-control-select";
-    select.appendChild(optionEmpty); // Ajoutez une option vide
+    optionEmpty.value = "empty";
+    optionEmpty.textContent = "Veuillez choisir une catégorie";
+
+    select.appendChild(optionEmpty);
+
     for (let i = 0; i < categoriesDTO.length; i++) {
       const option = document.createElement("option");
       option.value = categoriesDTO[i].id;

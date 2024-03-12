@@ -20,14 +20,12 @@ const init = async () => {
     window.location.pathname === "/" ||
     window.location.pathname === "/index.html"
   ) {
-    console.log("index.html");
     // Vérifie si l'utilisateur est connecté
     loginHandlerNav();
     // initialise les filtres et les travaux
     const { works, categories } = await initState();
     displayFilters(categories);
   } else if (window.location.pathname === "/login.html") {
-    console.log("login.html");
     loginHandler();
   }
 };

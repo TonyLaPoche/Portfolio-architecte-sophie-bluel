@@ -28,15 +28,12 @@ const states = {
   stepModal: "gallery",
 
   /**
-   * Nouveau travail à ajouter.
-   * @type {{ title: string; imageUrl: string; categoryId: string; userId: string; }}
+   * @type {FormData} newWork
+   * @property {number} category La catégorie du produit
+   * @property {string} title Le titre du produit
+   * @property {File} image L'image du produit
    */
-  newWork: {
-    title: "",
-    imageUrl: "",
-    categoryId: "",
-    userId: "",
-  },
+  newWork: new FormData(),
 };
 
 /* CATEGORIES Statement */
@@ -52,6 +49,10 @@ function getCategoriesStates() {
     return fetchAllCategories();
   }
   return states.categories;
+}
+
+function getCategoriesStatesById(id) {
+  return states.categories.find((category) => category.id == id);
 }
 
 /* WORKS Statement */
@@ -102,13 +103,37 @@ function deleteWorkStatesById(id) {
   deleteElementFromBDD(id);
 }
 
+function addWorkStates(work) {
+  //recherche de la catégorie
+  const category = getCategoriesStatesById(work.categoryId);
+  //construction de l'objet
+  const newWork = {
+    id: work.id,
+    title: work.title,
+    imageUrl: work.imageUrl,
+    categoryId: work.categoryId,
+    userId: work.userId,
+    category: category,
+  };
+
+  states.works.push(newWork);
+}
+
 // New Work Statement
 
 function setNewWorkStates(key, value) {
-  states.newWork[key] = value;
-  console.log(states.newWork);
+  if (states.newWork.has(key)) {
+    states.newWork.delete(key);
+    states.newWork.append(key, value);
+  } else {
+    states.newWork.append(key, value);
+  }
 }
 
+/**
+ * @description Récupère les données du nouveau travail à ajouter.
+ * @returns formData
+ */
 function getNewWorkStates() {
   return states.newWork;
 }
@@ -116,22 +141,18 @@ function getNewWorkStates() {
 function newWorkHasValidData() {
   const newWork = getNewWorkStates();
   if (
-    newWork.title === "" ||
-    newWork.imageUrl === "" ||
-    newWork.categoryId === ""
+    newWork.has("title") &&
+    newWork.has("image") &&
+    newWork.has("category") &&
+    newWork.get("category") != "empty"
   ) {
-    return false;
+    return true;
   }
-  return true;
+  return false;
 }
 
 function resetNewWorkStates() {
-  states.newWork = {
-    title: "",
-    imageUrl: "",
-    categoryId: "",
-    userId: "",
-  };
+  states.newWork = new FormData();
 }
 
 /* Modal Step Statement */
@@ -147,9 +168,11 @@ function getStepModal() {
 export {
   fetchAllCategories,
   getCategoriesStates,
+  getCategoriesStatesById,
   getWorksStates,
   getWorksStatesByCategory,
   fetchAllWorks,
+  addWorkStates,
   deleteWorkStatesById,
   setStepModal,
   getStepModal,

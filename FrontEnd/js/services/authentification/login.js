@@ -16,7 +16,7 @@ export class ErrorHandlerConnexion extends Error {
  * @returns  {boolean} true si la connexion est réussie un token est alors intégré au SessionStorage, sinon une erreur est levée.
  */
 export const login = async (email, password) => {
-  const url = "http://localhost:5678/api/users/login";
+  const url = "users/login";
   const body = JSON.stringify({ email, password });
   const options = {
     method: "POST",

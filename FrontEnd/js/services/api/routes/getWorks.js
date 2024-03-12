@@ -12,7 +12,7 @@ export const getWorks = async () => {
       "Content-Type": "application/json",
     },
   };
-  const data = await callApi("http://localhost:5678/api/works", options);
+  const data = await callApi("works", options);
 
   return data;
 };

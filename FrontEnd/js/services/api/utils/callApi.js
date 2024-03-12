@@ -6,7 +6,7 @@
  */
 export const callApi = async (url, options) => {
   try {
-    const response = await fetch(url, options);
+    const response = await fetch(`http://localhost:5678/api/${url}`, options);
     const data = response;
     if (data.status === 204) {
       return;

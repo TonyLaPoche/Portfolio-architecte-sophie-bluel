@@ -15,6 +15,6 @@ export const getCategories = async () => {
    * @type {{ id: number; name: string; }[]}
    * @returns Un tableau d'object de catégories comprenant un identifiant et un nom.
    */
-  const data = await callApi("http://localhost:5678/api/categories", options);
+  const data = await callApi("categories", options);
   return data;
 };

@@ -10,22 +10,27 @@ import { initState } from "./services/statements/initState.js";
  * Cette fonction initialise le javascript de l'application.
  * Elle est appelée lorsque le DOM est chargé.
  *
- * Une instance de RouterCustom est créée afin de gérer les routes.
+ * Une variable constante de pathname est créée via windows location afin de gérer les routes.
+ * Et de déterminer si l'utilisateur est connecté ou non ainsi que ou il se situe.
  *
- * Elle appelle displayFilters() pour afficher les filtres,
- * puis getWorks() pour récupérer les travaux et les afficher.
+ * Si l'utilisateur est sur la page d'accueil, on vérifie si l'utilisateur est connecté. via loginHandlerNav()
+ * On initialise les filtres et les travaux via initState() qui renvoie un objet avec les travaux et les catégories.
+ * Et l'on affiche les filtres via displayFilters(categories) qui affichera également les travaux nativement sur le filtres 'all'.
+ *
+ * Si l'utilisateur est sur la page de connexion, on vérifie si l'utilisateur est connecté via loginHandler()
+ *
+ * ------------------------------------------------------------
+ *
  */
 const init = async () => {
-  if (
-    window.location.pathname === "/" ||
-    window.location.pathname === "/index.html"
-  ) {
+  const { pathname } = window.location;
+  if (pathname === "/" || pathname === "/index.html") {
     // Vérifie si l'utilisateur est connecté
     loginHandlerNav();
     // initialise les filtres et les travaux
-    const { works, categories } = await initState();
+    const { categories } = await initState();
     displayFilters(categories);
-  } else if (window.location.pathname === "/login.html") {
+  } else if (pathname === "/login.html") {
     loginHandler();
   }
 };

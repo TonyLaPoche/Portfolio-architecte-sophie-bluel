@@ -13,12 +13,10 @@
 <body>
     <header>
         <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-        <nav>
+        <nav aria-labelledby="menu-navigation">
             <ul>
                 <li>projets</li>
                 <li>contact</li>
-                <li class="selected">
-                </li>
                 <li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
             </ul>
         </nav>
@@ -27,13 +25,15 @@
         <section id="login">
             <h2>Login</h2>
             <form name="login" id="loginForm" class="login_form">
-                    <label for="email">E-mail</label>
-                    <input type="email" name="email" id="email">
-                    <label for="password">Mot de passe</label>
-                    <input type="password" name="password" id="password">
-                <input type="submit" value="Se connecter">
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="email" aria-labelledby="email">
+                
+                <label for="password">Mot de passe</label>
+                <input type="password" name="password" id="password" aria-labelledby="password">
+                
+                <input type="submit" value="Se connecter" aria-label="login">
             </form>
-            <a href="#">Mot de passe oublié</a>
+            <a href="#" aria-label="forget-pdw">Mot de passe oublié</a>
         </section>
     </main>
 <script type="module" src="js/main.js"></script>

@@ -5,7 +5,6 @@ import { constructWork } from "../DomConstructor/workConstructor.js";
  * @param {Array} works - Tableau des travaux à afficher.
  */
 export const displayWorks = async (works) => {
-  // console.log("works", works);
   const worksCible = document.querySelector("#gallery");
   worksCible.innerHTML = "";
   works.forEach((work) => {

@@ -90,6 +90,7 @@ video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  scroll-behavior: smooth;
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -275,11 +276,15 @@ li:hover {
 #contact h2 {
   margin-bottom: 20px;
 }
-#contact form {
+#contact form fieldset {
   text-align: left;
   margin-top: 30px;
   display: flex;
   flex-direction: column;
+}
+
+#contact form legend {
+  text-align: center;
 }
 
 #contact input {

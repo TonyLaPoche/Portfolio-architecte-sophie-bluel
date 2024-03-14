@@ -1,41 +1,58 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-	<meta charset="UTF-8">
-	<title>Sophie Bluel - Architecte d'intérieur</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
-	<meta name="description" content="page d'authentification">
-	<link rel="stylesheet" href="./assets/style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sophie Bluel - Architecte d'intérieur</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="description" content="page d'authentification" />
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+  <body>
     <header>
-        <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-        <nav aria-labelledby="menu-navigation">
-            <ul>
-                <li>projets</li>
-                <li>contact</li>
-                <li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-            </ul>
-        </nav>
+      <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+      <nav aria-label="navigation">
+        <ul>
+          <li>projets</li>
+          <li>
+            <a href="./#contact" id="contact_menu" aria-label="contact">
+              contact
+            </a>
+          </li>
+          <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
+        </ul>
+      </nav>
     </header>
     <main>
-        <section id="login">
-            <h2>Login</h2>
-            <form name="login" id="loginForm" class="login_form">
-                <label for="email">E-mail</label>
-                <input type="email" name="email" id="email" aria-labelledby="email">
-                
-                <label for="password">Mot de passe</label>
-                <input type="password" name="password" id="password" aria-labelledby="password">
-                
-                <input type="submit" value="Se connecter" aria-label="login">
-            </form>
-            <a href="#" aria-label="forget-pdw">Mot de passe oublié</a>
-        </section>
+      <section id="login">
+        <h2>Login</h2>
+        <form
+          name="login"
+          id="loginForm"
+          class="login_form"
+          aria-label="login-formulaire"
+        >
+          <label for="email">E-mail</label>
+          <input type="email" name="email" id="email" aria-label="email" />
+
+          <label for="password">Mot de passe</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            aria-labelledby="password"
+          />
+
+          <input type="submit" value="Se connecter" aria-label="login" />
+        </form>
+        <a href="#" aria-label="forget-pdw">Mot de passe oublié</a>
+      </section>
     </main>
-<script type="module" src="js/main.js"></script>
-</body>
+    <script type="module" src="js/main.js"></script>
+  </body>
 </html>

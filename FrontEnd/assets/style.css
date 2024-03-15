@@ -264,6 +264,7 @@ li:hover {
 
 #gallery img {
   width: 100%;
+  max-height: 485px;
 }
 
 /* contact formulaire */
@@ -480,6 +481,7 @@ footer nav ul {
 .modal-content img {
   width: 100%;
   object-fit: cover;
+  max-height: 120px;
 }
 
 .modal-main {

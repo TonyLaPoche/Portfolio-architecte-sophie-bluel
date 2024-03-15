@@ -67,7 +67,7 @@ const workModalAddingConstructor = (modalMain) => {
     img.alt = file.name;
     img.className = "img-preview";
     img.style.width = "60%";
-    img.style.height = "200px";
+    img.style.maxHeight = "200px";
     img.style.objectFit = "contain";
 
     // ajoute l'image a formData pour l'envoyer avec le formulaire

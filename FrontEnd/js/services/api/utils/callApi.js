@@ -14,6 +14,10 @@ export const callApi = async (url, options) => {
       return data.json();
     }
   } catch (error) {
-    throw new Error("Une erreur est survenue lors de l'appel à l'API");
+    throw new Error(
+      "Une erreur est survenue lors de l'appel à l'API",
+      "\n",
+      error
+    );
   }
 };

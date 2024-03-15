@@ -1,3 +1,4 @@
+import { deleteWork } from "../api/routes/deleteHandler.js";
 import { getCategories } from "../api/routes/getCategories.js";
 import { getWorks } from "../api/routes/getWorks.js";
 
@@ -81,15 +82,7 @@ function getWorksStatesByCategory(category) {
 }
 
 async function deleteElementFromBDD(id) {
-  const data = await fetch(`http://localhost:5678/api/works/${id}`, {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-    },
-  });
-  console.log("delete");
-  const response = await data;
-  console.log(response);
+  await deleteWork(id);
 }
 
 function deleteWorkStatesById(id) {
@@ -99,7 +92,6 @@ function deleteWorkStatesById(id) {
   document.querySelectorAll(`[data-id="works-${id}"]`).forEach((el) => {
     el.remove();
   });
-  console.log("states AJOUT");
   deleteElementFromBDD(id);
 }
 
@@ -140,17 +132,29 @@ function getNewWorkStates() {
 
 function newWorkHasValidData() {
   const newWork = getNewWorkStates();
-  if (
-    newWork.has("title") &&
-    newWork.has("image") &&
-    newWork.has("category") &&
-    newWork.get("category") != "empty"
-  ) {
-    return true;
+  let point = 0;
+  if (newWork.has("title")) {
+    point++;
   }
-  return false;
+  if (newWork.has("category")) {
+    point++;
+  }
+  if (newWork.has("image")) {
+    point++;
+  }
+  if (
+    newWork.get("title") === "" ||
+    newWork.get("category") === "empty" ||
+    newWork.get("image") === ""
+  ) {
+    return false;
+  }
+  if (point === 3) {
+    return true;
+  } else {
+    return false;
+  }
 }
-
 function resetNewWorkStates() {
   states.newWork = new FormData();
 }

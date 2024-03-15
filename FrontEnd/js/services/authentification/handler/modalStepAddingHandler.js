@@ -28,6 +28,7 @@ export const modalStepAddingHandler = (
     title.textContent = "Ajout photo";
     button.disabled = true;
     button.textContent = "valider";
+
     const modalMain = document.querySelector(".modal-main");
     modalMain.innerHTML = "";
     workModalAddingConstructor(modalMain);
@@ -36,16 +37,18 @@ export const modalStepAddingHandler = (
     if (getStepModal() === "validation") {
       if (newWorkHasValidData()) {
         const newWork = getNewWorkStates();
-        const response = await fetch("http://localhost:5678/api/works", {
+        const option = {
           method: "POST",
           body: newWork,
           headers: {
             Authorization: `Bearer ${sessionStorage.getItem("token")}`,
           },
-        });
-        const data = await response.json();
+        };
+        const data = await callApi("works", option);
         addWorkStates(data);
         previousButton.click();
+      } else {
+        alert("Veuillez remplir tous les champs");
       }
     }
   });

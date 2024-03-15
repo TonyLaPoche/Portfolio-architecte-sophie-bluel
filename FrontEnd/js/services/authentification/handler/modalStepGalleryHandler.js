@@ -31,6 +31,7 @@ export const modalStepGalleryHandler = (
       addButton.textContent = "Ajouter une photo";
       addButton.disabled = false;
     }
+
     document.querySelector(".modal-main").innerHTML = "";
     workModalMainConstructor(modalMain, works);
     displayWorks(works);

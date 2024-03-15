@@ -5,7 +5,6 @@ const handleDeleteItem = (e) => {
     .getAttribute("data-id")
     .split("-")[1];
   deleteWorkStatesById(id);
-  console.log("delete", id);
   return;
 };
 

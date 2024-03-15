@@ -106,5 +106,6 @@ export const modalConstructor = () => {
     addButton,
     modalMain
   );
+
   return modal;
 };

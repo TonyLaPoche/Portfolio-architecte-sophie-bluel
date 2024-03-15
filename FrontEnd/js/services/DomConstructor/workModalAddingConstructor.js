@@ -46,6 +46,14 @@ const workModalAddingConstructor = (modalMain) => {
   // Ecouteur d'événement sur l'input permettant de choisir une photo a ajouter au formulaire
   addPictureInput.addEventListener("change", (e) => {
     const file = e.target.files[0];
+
+    // vérifie le format de l'image
+    if (!["image/jpeg", "image/png"].includes(file.type)) {
+      alert("Format de fichier invalide");
+      addPictureInput.value = "";
+      return;
+    }
+
     // si le fichier est trop lourd, on alerte l'utilisateur et on vide l'input pour qu'il puisse choisir une autre photo
     if (file.size > 4000000) {
       alert("Fichier trop lourd");
@@ -84,7 +92,7 @@ const workModalAddingConstructor = (modalMain) => {
 
   // Texte de l'input notifiant l'utilisateur de la taille de l'image et son format ( jpg, jpeg, png) & 4mo max
   const addPictureText = document.createElement("p");
-  addPictureText.textContent = "jpg, pbg : 4mo max";
+  addPictureText.textContent = "jpg, png : 4mo max";
   addPictureDiv.appendChild(addPictureText);
   form.appendChild(addPictureDiv);
 

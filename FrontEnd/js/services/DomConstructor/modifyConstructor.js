@@ -1,5 +1,10 @@
 import { modalOpenHandler } from "../authentification/handler/modalOpenHandler.js";
 
+/**
+ * Cette fonction permet de créer les éléments SVG et bouton pour la modification.
+ * Elle utilise la fonction modalOpenHandler() pour gérer l'ouverture du modal.
+ * @returns {Object} - Un objet contenant un élément SVG et un élément bouton.
+ */
 export const modifyConstructor = () => {
   const svgElement = document.createElementNS(
     "http://www.w3.org/2000/svg",

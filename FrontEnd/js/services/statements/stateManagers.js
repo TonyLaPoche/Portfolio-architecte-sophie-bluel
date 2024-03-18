@@ -38,12 +38,20 @@ const states = {
 
 /* CATEGORIES Statement */
 
+/**
+ * @description Récupère les catégories via un appel API.
+ * @returns {{ id: number; name: string; }[]} categories
+ */
 async function fetchAllCategories() {
   const awaitCategories = await getCategories();
   states.categories = awaitCategories;
   return states.categories;
 }
 
+/**
+ * @description Récupère les catégories
+ * @returns {{ id: number; name: string; }[]} categories
+ */
 function getCategoriesStates() {
   if (states.categories.length === 0) {
     return fetchAllCategories();
@@ -51,18 +59,31 @@ function getCategoriesStates() {
   return states.categories;
 }
 
+/**
+ * @description Récupère une catégorie en fonction de son identifiant.
+ * @param {number | string} id
+ * @returns {{ id: number; name: string; }} category
+ */
 function getCategoriesStatesById(id) {
   return states.categories.find((category) => category.id == id);
 }
 
 /* WORKS Statement */
 
+/**
+ * @description Récupère les travaux via un appel API.
+ * @returns {{ id: number; title: string; imageUrl: string; categoryId: number; userId: number; category: { id: number; name: string; };}[]} works
+ */
 async function fetchAllWorks() {
   const data = await getWorks();
   states.works = data;
   return states.works;
 }
 
+/**
+ * @description Récupère les travaux
+ * @returns {{ id: number; title: string; imageUrl: string; categoryId: number; userId: number; category: { id: number; name: string; };}[]} works
+ */
 function getWorksStates() {
   if (states.works.length === 0) {
     return fetchAllWorks();
@@ -70,6 +91,11 @@ function getWorksStates() {
   return states.works;
 }
 
+/**
+ * @description Récupère les travaux en fonction de la catégorie
+ * @param {string} category  nom de la catégorie utilisé pour filtrer les travaux
+ * @returns  {{ id: number; title: string; imageUrl: string; categoryId: number; userId: number; category: { id: number; name: string; };}[]} worksfiltered
+ */
 function getWorksStatesByCategory(category) {
   if (category === "all") {
     return states.works;
@@ -80,10 +106,20 @@ function getWorksStatesByCategory(category) {
   return worksfiltered;
 }
 
+/**
+ * @description Supprime un élément de la base de données.
+ * @param {number | string} id
+ * @returns {Promise<void>}
+ */
 async function deleteElementFromBDD(id) {
   await deleteWork(id);
 }
 
+/**
+ * @description Supprime un travail de l'état global.
+ * @param {number | string} id - Identifiant du travail à supprimer.
+ * @returns {void}
+ */
 function deleteWorkStatesById(id) {
   const elementToDelete = states.works.find((work) => work.id == id);
   const newState = states.works.filter((work) => work !== elementToDelete);
@@ -94,6 +130,11 @@ function deleteWorkStatesById(id) {
   deleteElementFromBDD(id);
 }
 
+/**
+ * @description Ajoute un travail à l'état global.
+ * @param {{ "id": number, "title": "string", "imageUrl": "string", "categoryId": "string", "userId": number }} work  - Objet représentant un travail récupéré via l'API.
+ * @returns {void}
+ */
 function addWorkStates(work) {
   //recherche de la catégorie
   const category = getCategoriesStatesById(work.categoryId);
@@ -112,6 +153,11 @@ function addWorkStates(work) {
 
 // New Work Statement
 
+/**
+ * @description Modifie les données du nouveau travail à ajouter.
+ * @param {string} key
+ * @param {string | number | File} value
+ */
 function setNewWorkStates(key, value) {
   if (states.newWork.has(key)) {
     states.newWork.delete(key);
@@ -129,6 +175,10 @@ function getNewWorkStates() {
   return states.newWork;
 }
 
+/**
+ * @description Vérifie si les données du nouveau travail sont valides et complètes.
+ * @returns {boolean} true si les données du nouveau travail sont valides, sinon false.
+ */
 function newWorkHasValidData() {
   const newWork = getNewWorkStates();
   let point = 0;
@@ -148,22 +198,33 @@ function newWorkHasValidData() {
   ) {
     return false;
   }
-  if (point === 3) {
-    return true;
-  } else {
-    return false;
-  }
+
+  return point === 3;
 }
+
+/**
+ * @description Réinitialise les données du nouveau travail.
+ * @return {void}
+ */
 function resetNewWorkStates() {
   states.newWork = new FormData();
 }
 
 /* Modal Step Statement */
 
+/**
+ * @description Modifie l'étape du processus de modal.
+ * @param {string} step
+ * @returns {void}
+ */
 function setStepModal(step) {
   states.stepModal = step;
 }
 
+/**
+ * @description Récupère l'étape courant du processus de modal.
+ * @returns {string} stepModal
+ */
 function getStepModal() {
   return states.stepModal;
 }

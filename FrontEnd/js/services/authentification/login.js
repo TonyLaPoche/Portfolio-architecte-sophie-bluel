@@ -5,12 +5,11 @@ import { callApi } from "../api/utils/callApi.js";
 export class ErrorHandlerConnexion extends Error {
   constructor(message) {
     super(message);
-    this.name = "ErrorHandlerConnexion";
+    this.name = "Erreur de connexion";
   }
 }
 
 /**
- *
  * @param {*} email adresse email rensignée par l'utilisateur
  * @param {*} password mot de passe renseigné par l'utilisateur
  * @returns  {boolean} true si la connexion est réussie un token est alors intégré au SessionStorage, sinon une erreur est levée.

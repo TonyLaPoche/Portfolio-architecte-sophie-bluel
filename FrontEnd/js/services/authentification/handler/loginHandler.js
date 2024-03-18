@@ -19,7 +19,7 @@ export const loginHandler = () => {
       }
     } catch (error) {
       if (error instanceof ErrorHandlerConnexion) {
-        alert(error.message + " NAME :" + error.name);
+        alert(error.message);
       }
     }
   });

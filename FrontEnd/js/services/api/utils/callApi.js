@@ -5,19 +5,11 @@
  * @returns Les données retournées par l'API.
  */
 export const callApi = async (url, options) => {
-  try {
-    const response = await fetch(`http://localhost:5678/api/${url}`, options);
-    const data = response;
-    if (data.status === 204) {
-      return;
-    } else {
-      return data.json();
-    }
-  } catch (error) {
-    throw new Error(
-      "Une erreur est survenue lors de l'appel à l'API",
-      "\n",
-      error
-    );
+  const response = await fetch(`http://localhost:5678/api/${url}`, options);
+  const data = response;
+  if (data.status === 204) {
+    return;
+  } else {
+    return data.json();
   }
 };

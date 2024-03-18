@@ -11,7 +11,7 @@ import { initState } from "./services/statements/initState.js";
  * Elle est appelée lorsque le DOM est chargé.
  *
  * Une variable constante de pathname est créée via windows location afin de gérer les routes.
- * Et de déterminer si l'utilisateur est connecté ou non ainsi que ou il se situe.
+ * Et de déterminer si l'utilisateur est connecté ou non afin de savoir ou il se situe.
  *
  * Si l'utilisateur est sur la page d'accueil, on vérifie si l'utilisateur est connecté. via loginHandlerNav()
  * On initialise les filtres et les travaux via initState() qui renvoie un objet avec les travaux et les catégories.

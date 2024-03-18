@@ -6,6 +6,12 @@ import { getWorksStates } from "../statements/stateManagers.js";
 import workModalAddingConstructor from "./workModalAddingConstructor.js";
 import { workModalMainConstructor } from "./workModalMainConstructor.js";
 
+/**
+ * Cette fonction permet de construire une modal.
+ * Elle crée les éléments du DOM et ajoute des écouteurs d'événements.
+ *
+ * @returns {HTMLDivElement} modal
+ */
 export const modalConstructor = () => {
   // Modal Views
   const modal = document.createElement("div");

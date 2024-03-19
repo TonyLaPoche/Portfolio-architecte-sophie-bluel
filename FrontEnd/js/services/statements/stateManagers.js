@@ -16,8 +16,17 @@ const states = {
   categories: [],
 
   /**
-   * Liste des travaux. Initialement vide, mais remplie par les appels API.
+   * ## Liste des travaux.
+   * Initialement vide, mais remplie par les appels API.
    * @type {{ id: number; title: string; imageUrl: string; categoryId: number; userId: number; category: { id: number; name: string; } }[]}
+   *
+   * ### Méthode d'accès aux travaux :
+   * @example
+   * getWorksStates() // retourne tous les travaux
+   * getWorksStatesByCategory("all") // retourne tous les travaux
+   * getWorksStatesByCategory("params") // retourne les travaux de la catégorie passée en paramètre
+   * deleteWorkStatesById(1) // supprime le travail ayant l'identifiant 1
+   * addWorkStates({ id: 1, title: "title", imageUrl: "url", categoryId: 1, userId: 1 }) // ajoute un travail à la liste des travaux
    */
   works: [],
 

@@ -169,10 +169,10 @@ function createFormGroup(id, label, type, required) {
 
     select.appendChild(optionEmpty);
 
-    for (let i = 0; i < categoriesDTO.length; i++) {
+    for (const category of categoriesDTO) {
       const option = document.createElement("option");
-      option.value = categoriesDTO[i].id;
-      option.textContent = categoriesDTO[i].name;
+      option.value = category.id;
+      option.textContent = category.name;
       select.appendChild(option);
     }
     formGroupDiv.appendChild(select);

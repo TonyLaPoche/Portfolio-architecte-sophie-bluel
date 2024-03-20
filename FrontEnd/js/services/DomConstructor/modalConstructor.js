@@ -1,6 +1,6 @@
-import { modalCloseHandler } from "../authentification/handler/modalCloseHandler.js";
-import { modalStepAddingHandler } from "../authentification/handler/modalStepAddingHandler.js";
-import { modalStepGalleryHandler } from "../authentification/handler/modalStepGalleryHandler.js";
+import { modalCloseHandler } from "./modal/handler/modalCloseHandler.js";
+import { modalStepAddingHandler } from "./modal/handler/modalStepAddingHandler.js";
+import { modalStepGalleryHandler } from "./modal/handler/modalStepGalleryHandler.js";
 import { displayModal } from "../displayModels/displayModal.js";
 import { getWorksStates } from "../statements/stateManagers.js";
 import workModalAddingConstructor from "./workModalAddingConstructor.js";

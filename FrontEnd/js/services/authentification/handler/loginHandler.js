@@ -20,6 +20,8 @@ export const loginHandler = () => {
     } catch (error) {
       if (error instanceof ErrorHandlerConnexion) {
         alert(error.message);
+      } else {
+        console.error(error);
       }
     }
   });

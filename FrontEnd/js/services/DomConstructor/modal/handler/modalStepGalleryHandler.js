@@ -1,7 +1,10 @@
-import { workModalMainConstructor } from "../../DomConstructor/workModalMainConstructor.js";
-import { displayWorks } from "../../displayModels/displayWorks.js";
-import { setStepModalHandler } from "../../handlers/StepModalHandler.js";
-import { fetchAllWorks, getStepModal } from "../../statements/stateManagers.js";
+import { workModalMainConstructor } from "../../workModalMainConstructor.js";
+import { displayWorks } from "../../../displayModels/displayWorks.js";
+import { setStepModalHandler } from "../../../handlers/StepModalHandler.js";
+import {
+  fetchAllWorks,
+  getStepModal,
+} from "../../../statements/stateManagers.js";
 
 /**
  *

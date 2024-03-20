@@ -4,6 +4,7 @@ import { setStepModalHandler } from "../../../handlers/StepModalHandler.js";
 import {
   fetchAllWorks,
   getStepModal,
+  resetNewWorkStates,
 } from "../../../statements/stateManagers.js";
 
 /**
@@ -33,6 +34,7 @@ export const modalStepGalleryHandler = (
       title.textContent = "Galerie photo";
       addButton.textContent = "Ajouter une photo";
       addButton.disabled = false;
+      resetNewWorkStates();
     }
 
     document.querySelector(".modal-main").innerHTML = "";

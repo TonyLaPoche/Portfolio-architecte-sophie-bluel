@@ -5,6 +5,7 @@ import {
   getNewWorkStates,
   getStepModal,
   newWorkHasValidData,
+  resetNewWorkStates,
 } from "../../../statements/stateManagers.js";
 
 /**
@@ -46,6 +47,7 @@ export const modalStepAddingHandler = (
         };
         const data = await callApi("works", option);
         addWorkStates(data);
+        resetNewWorkStates();
         previousButton.click();
       } else {
         alert("Veuillez remplir tous les champs");

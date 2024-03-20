@@ -1,4 +1,4 @@
-import { checkLog } from "../authentification/checkLog.js";
+import { checkLog } from "../authentification/services/checkLog.js";
 import { displayModify } from "../displayModels/displayModify.js";
 
 /**

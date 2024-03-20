@@ -55,7 +55,7 @@ const workModalAddingConstructor = (modalMain) => {
     }
 
     // si le fichier est trop lourd, on alerte l'utilisateur et on vide l'input pour qu'il puisse choisir une autre photo
-    if (file.size > 4000000) {
+    if (file.size > 4194304) {
       alert("Fichier trop lourd");
       addPictureInput.value = "";
       return;

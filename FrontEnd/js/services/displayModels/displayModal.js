@@ -1,4 +1,5 @@
-import { modalConstructor } from "../DomConstructor/modalConstructor.js";
+import { modalConstructor } from "../DomConstructor/modal/modalConstructor.js";
+import { resetNewWorkStates } from "../statements/stateManagers.js";
 
 /**
  * Cette fonction permet d'afficher ou de cacher un modal.
@@ -12,5 +13,6 @@ export const displayModal = (hasModal) => {
     body.appendChild(modalConstructor());
   } else if (modal && !hasModal) {
     body.removeChild(modal);
+    resetNewWorkStates();
   }
 };

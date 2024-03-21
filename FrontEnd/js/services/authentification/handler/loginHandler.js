@@ -1,4 +1,7 @@
-import { ErrorHandlerConnexion, login } from "../../api/routes/login.js";
+import {
+  ErrorHandlerConnexion,
+  postLogin,
+} from "../../api/routes/postLogin.js";
 
 /**
  * Cette fonction permet de gérer la connexion de l'utilisateur.
@@ -11,7 +14,7 @@ export const loginHandler = () => {
     const email = document.querySelector("#email").value;
     const password = document.querySelector("#password").value;
     try {
-      const connexion = await login(email, password);
+      const connexion = await postLogin(email, password);
       if (connexion) {
         window.location.href = "./index.html";
       } else {

@@ -1,5 +1,5 @@
 import { displayModify } from "../../components/Modify/displayModify/displayModify.js";
-import { checkLog } from "../services/checkLog.js";
+import { checkLog } from "../utils/checkLog.js";
 
 /**
  * Cette fonction permet de gérer la connexion et la déconnexion de l'utilisateur.

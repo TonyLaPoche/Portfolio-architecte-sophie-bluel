@@ -1,5 +1,5 @@
 import workModalAddingConstructor from "../workModalAddingConstructor.js";
-import { callApi } from "../../../../../api/utils/callApi.js";
+import { postWork } from "../../../../../api/routes/postWork.js";
 import {
   addWorkStates,
   getNewWorkStates,
@@ -38,14 +38,7 @@ export const modalStepAddingHandler = (
     if (getStepModal() === "validation") {
       if (newWorkHasValidData()) {
         const newWork = getNewWorkStates();
-        const option = {
-          method: "POST",
-          body: newWork,
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-          },
-        };
-        const data = await callApi("works", option);
+        const data = postWork(newWork);
         addWorkStates(data);
         resetNewWorkStates();
         previousButton.click();

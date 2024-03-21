@@ -84,6 +84,7 @@ function getCategoriesStatesById(id) {
  * @returns {{ id: number; title: string; imageUrl: string; categoryId: number; userId: number; category: { id: number; name: string; };}[]} works
  */
 async function fetchAllWorks() {
+  // produit un appel API pour récupérer les travaux
   const data = await getWorks();
   states.works = data;
   return states.works;

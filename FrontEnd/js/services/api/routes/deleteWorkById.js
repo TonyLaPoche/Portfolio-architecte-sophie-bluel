@@ -1,6 +1,6 @@
 import { callApi } from "../utils/callApi.js";
 
-export const deleteWork = async (id) => {
+export const deleteWorkById = async (id) => {
   const url = `works/${id}`;
   const options = {
     method: "DELETE",

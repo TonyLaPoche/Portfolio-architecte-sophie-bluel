@@ -11,11 +11,11 @@ export class ErrorHandlerConnexion extends Error {
 }
 
 /**
- * @param {*} email adresse email rensignée par l'utilisateur
- * @param {*} password mot de passe renseigné par l'utilisateur
- * @returns  {boolean} true si la connexion est réussie un token est alors intégré au SessionStorage, sinon une erreur est levée.
+ * @param {string} email adresse email rensignée par l'utilisateur
+ * @param {string} password mot de passe renseigné par l'utilisateur
+ * @returns {boolean} true si la connexion est réussie un token est alors intégré au SessionStorage, sinon une erreur est levée.
  */
-export const login = async (email, password) => {
+export const postLogin = async (email, password) => {
   const url = "users/login";
   const body = JSON.stringify({ email, password });
   const options = {

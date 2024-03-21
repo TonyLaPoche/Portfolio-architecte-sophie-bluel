@@ -6,7 +6,7 @@ import { checkLog } from "../services/checkLog.js";
  * Elle intéragie avec le DOM pour afficher les boutons de connexion et de déconnexion.
  * Les méthodes CheckLog() et displayModify() sont utilisées pour vérifier si l'utilisateur est connecté et pour afficher les boutons de modification.
  */
-export function loginHandlerNav() {
+export function handlerNavLogin() {
   const loginElementHtml = document.getElementById("login");
   const hasToken = checkLog();
   if (hasToken) {

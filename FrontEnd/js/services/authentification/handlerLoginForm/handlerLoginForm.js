@@ -8,7 +8,7 @@ import {
  * Si la connexion est réussie, l'utilisateur est redirigé vers la page d'accueil.
  * Sinon, une alerte est affichée.
  */
-export const loginHandler = () => {
+export const handlerLoginForm = () => {
   document.querySelector("#loginForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     const email = document.querySelector("#email").value;

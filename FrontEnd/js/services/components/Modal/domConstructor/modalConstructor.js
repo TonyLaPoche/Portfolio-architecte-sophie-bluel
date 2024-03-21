@@ -1,7 +1,10 @@
 import { modalCloseHandler } from "../handler/modalCloseHandler.js";
 import { modalStepAddingHandler } from "./StepAdding/handler/modalStepAddingHandler.js";
 import { modalStepGalleryHandler } from "./StepGallery/handler/modalStepGalleryHandler.js";
-import { getWorksStates } from "../../../statements/stateManagers.js";
+import {
+  getStepModal,
+  getWorksStates,
+} from "../../../statements/stateManagers.js";
 import workModalAddingConstructor from "./StepAdding/workModalAddingConstructor.js";
 import { workModalMainConstructor } from "./StepGallery/workModalMainConstructor.js";
 import { displayModal } from "../displayModal/displayModal.js";
@@ -69,7 +72,7 @@ export const modalConstructor = () => {
   const modalMain = document.createElement("div");
   modalMain.className = "modal-main";
 
-  let currentStep = "gallery";
+  let currentStep = getStepModal();
   if (currentStep === "gallery") {
     // Modal Main - GALLERY STEP
     workModalMainConstructor(modalMain, works);
@@ -103,8 +106,6 @@ export const modalConstructor = () => {
 
   modalCloseHandler(closeButton);
 
-  modalStepAddingHandler(addButton, divHeadButton, title, previousButton);
-
   modalStepGalleryHandler(
     previousButton,
     divHeadButton,
@@ -112,6 +113,7 @@ export const modalConstructor = () => {
     addButton,
     modalMain
   );
+  modalStepAddingHandler(addButton, divHeadButton, title, previousButton);
 
   return modal;
 };

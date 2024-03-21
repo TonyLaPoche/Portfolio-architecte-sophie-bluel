@@ -1,10 +1,15 @@
 import { getWorksStatesByCategory } from "../../../statements/stateManagers.js";
 import { displayWorks } from "../../Works/displayWorks/displayWorks.js";
 
-const updateDisplay = (filter) => {
-  const worksData = getWorksStatesByCategory(filter);
+/**
+ * @description Met à jour l'affichage des travaux en fonction du filtre sélectionné.
+ * @param {string} categoryName - Nom de la catégorie de travaux à afficher.
+ */
+const updateDisplay = (categoryName) => {
+  const worksData = getWorksStatesByCategory(categoryName);
   displayWorks(worksData);
 };
+
 /**
  * Initialise les écouteurs d'événements pour les filtres.
  * Cette fonction met en place les écouteurs d'événements sur chaque élément de filtre.
@@ -20,8 +25,8 @@ export const filtersHandlers = () => {
       });
 
       this.classList.add("filter_item_active");
-      const filter = this.getAttribute("data-category");
-      updateDisplay(filter);
+      const category = this.getAttribute("data-category");
+      updateDisplay(category);
     });
   });
   updateDisplay("all");

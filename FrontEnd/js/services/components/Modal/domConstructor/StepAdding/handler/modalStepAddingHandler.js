@@ -29,7 +29,6 @@ export const modalStepAddingHandler = (
     title.textContent = "Ajout photo";
     button.disabled = true;
     button.textContent = "valider";
-
     const modalMain = document.querySelector(".modal-main");
     modalMain.innerHTML = "";
     workModalAddingConstructor(modalMain);
@@ -38,7 +37,7 @@ export const modalStepAddingHandler = (
     if (getStepModal() === "validation") {
       if (newWorkHasValidData()) {
         const newWork = getNewWorkStates();
-        const data = postWork(newWork);
+        const data = await postWork(newWork);
         addWorkStates(data);
         resetNewWorkStates();
         previousButton.click();

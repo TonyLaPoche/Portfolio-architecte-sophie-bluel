@@ -1,9 +1,8 @@
 import { callApi } from "../utils/callApi.js";
 
 /**
- * Récupère les travaux depuis l'API et les filtre en fonction de l'option de filtre.
- * @param {String} filtreOptions - Option de filtre pour les travaux (par défaut "all").
- * @returns {{ id: number; title: string; imageUrl: string; categoryId: number; userId: number; category: { id: number; name: string; } }[]} Un tableau de travaux filtrés ou non.
+ * Récupère les travaux depuis l'API
+ * @returns {Promise<{ id: number; title: string; imageUrl: string; categoryId: number; userId: number; category: { id: number; name: string; } }[]>} Un tableau de travaux filtrés ou non.
  */
 export const getWorks = async () => {
   const options = {

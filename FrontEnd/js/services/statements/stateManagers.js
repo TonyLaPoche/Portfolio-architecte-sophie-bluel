@@ -1,4 +1,4 @@
-import { deleteWork } from "../api/routes/deleteHandler.js";
+import { deleteWorkById } from "../api/routes/deleteWorkById.js";
 import { getCategories } from "../api/routes/getCategories.js";
 import { getWorks } from "../api/routes/getWorks.js";
 
@@ -121,7 +121,7 @@ function getWorksStatesByCategory(category) {
  * @returns {Promise<void>}
  */
 async function deleteElementFromBDD(id) {
-  await deleteWork(id);
+  await deleteWorkById(id);
 }
 
 /**

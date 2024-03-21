@@ -1,4 +1,4 @@
-import { displayModal } from "../../../displayModels/displayModal.js";
+import { displayModal } from "../displayModal/displayModal.js";
 
 export const modalCloseHandler = (button) => {
   button.addEventListener("click", () => {

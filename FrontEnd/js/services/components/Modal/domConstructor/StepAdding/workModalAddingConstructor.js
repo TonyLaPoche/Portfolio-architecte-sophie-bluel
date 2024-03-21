@@ -1,10 +1,9 @@
-import { setStepModalHandler } from "../handlers/StepModalHandler.js";
-
 import {
   getCategoriesStates,
   newWorkHasValidData,
   setNewWorkStates,
-} from "../statements/stateManagers.js";
+  setStepModal,
+} from "../../../../statements/stateManagers.js";
 
 const workModalAddingConstructor = (modalMain) => {
   // Créer le formulaire
@@ -122,7 +121,7 @@ const workModalAddingConstructor = (modalMain) => {
         break;
     }
     if (newWorkHasValidData()) {
-      setStepModalHandler("validation");
+      setStepModal("validation");
       button.disabled = false;
     } else {
       button.disabled = true;

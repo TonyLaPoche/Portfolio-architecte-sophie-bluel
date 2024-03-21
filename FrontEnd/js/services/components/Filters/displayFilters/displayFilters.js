@@ -1,5 +1,5 @@
-import { filtersHandlers } from "../handlers/filterHandler.js";
-import { constructFilterList } from "../DomConstructor/filterConstructor.js";
+import { filtersHandlers } from "../handler/filterHandler.js";
+import { constructFilterList } from "../domConstructor/filterConstructor.js";
 
 /**
  * @description Affiche les filtres sur la page d'accueil.

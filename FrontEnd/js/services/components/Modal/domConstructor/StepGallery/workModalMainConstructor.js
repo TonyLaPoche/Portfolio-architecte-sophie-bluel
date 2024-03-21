@@ -1,4 +1,4 @@
-import { deleteWorkStatesById } from "../statements/stateManagers.js";
+import { deleteWorkStatesById } from "../../../../statements/stateManagers.js";
 
 const handleDeleteItem = (e) => {
   const id = e.currentTarget.parentNode.parentNode

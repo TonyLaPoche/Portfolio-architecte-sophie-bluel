@@ -1,4 +1,4 @@
-import { modalOpenHandler } from "./modal/handler/modalOpenHandler.js";
+import { modalOpenHandler } from "../handler/modalOpenHandler.js";
 
 /**
  * Cette fonction permet de créer les éléments SVG et bouton pour la modification.

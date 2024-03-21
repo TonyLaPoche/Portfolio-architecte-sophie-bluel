@@ -1,4 +1,5 @@
-import { callApi } from "../api/utils/callApi.js";
+import { callApi } from "../utils/callApi.js";
+
 /**
  * Cette erreur est levée lorsqu'une erreur est survenue lors de la connexion.
  */

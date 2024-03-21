@@ -1,5 +1,5 @@
-import { displayWorks } from "../displayModels/displayWorks.js";
-import { getWorksStatesByCategory } from "../statements/stateManagers.js";
+import { getWorksStatesByCategory } from "../../../statements/stateManagers.js";
+import { displayWorks } from "../../Works/displayWorks/displayWorks.js";
 
 const updateDisplay = (filter) => {
   const worksData = getWorksStatesByCategory(filter);

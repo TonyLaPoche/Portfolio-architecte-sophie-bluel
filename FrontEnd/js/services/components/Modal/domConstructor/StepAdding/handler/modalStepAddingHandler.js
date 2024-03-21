@@ -1,12 +1,12 @@
-import workModalAddingConstructor from "../../workModalAddingConstructor.js";
-import { callApi } from "../../../api/utils/callApi.js";
+import workModalAddingConstructor from "../workModalAddingConstructor.js";
+import { callApi } from "../../../../../api/utils/callApi.js";
 import {
   addWorkStates,
   getNewWorkStates,
   getStepModal,
   newWorkHasValidData,
   resetNewWorkStates,
-} from "../../../statements/stateManagers.js";
+} from "../../../../../statements/stateManagers.js";
 
 /**
  *

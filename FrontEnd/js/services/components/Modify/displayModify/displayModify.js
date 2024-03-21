@@ -1,4 +1,4 @@
-import { modifyConstructor } from "../DomConstructor/modifyConstructor.js";
+import { modifyConstructor } from "../domConstructor/modifyConstructor.js";
 
 /**
  * Cette fonction permet d'afficher les boutons de modification.

@@ -1,5 +1,5 @@
-import { modalConstructor } from "../DomConstructor/modal/modalConstructor.js";
-import { resetNewWorkStates } from "../statements/stateManagers.js";
+import { resetNewWorkStates } from "../../../statements/stateManagers.js";
+import { modalConstructor } from "../domConstructor/modalConstructor.js";
 
 /**
  * Cette fonction permet d'afficher ou de cacher un modal.

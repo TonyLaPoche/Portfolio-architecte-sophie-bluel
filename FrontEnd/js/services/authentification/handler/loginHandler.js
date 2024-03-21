@@ -1,4 +1,4 @@
-import { ErrorHandlerConnexion, login } from "../login.js";
+import { ErrorHandlerConnexion, login } from "../../api/routes/login.js";
 
 /**
  * Cette fonction permet de gérer la connexion de l'utilisateur.

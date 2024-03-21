@@ -1,10 +1,10 @@
-import { modalCloseHandler } from "./handler/modalCloseHandler.js";
-import { modalStepAddingHandler } from "./handler/modalStepAddingHandler.js";
-import { modalStepGalleryHandler } from "./handler/modalStepGalleryHandler.js";
-import { displayModal } from "../../displayModels/displayModal.js";
-import { getWorksStates } from "../../statements/stateManagers.js";
-import workModalAddingConstructor from "../workModalAddingConstructor.js";
-import { workModalMainConstructor } from "../workModalMainConstructor.js";
+import { modalCloseHandler } from "../handler/modalCloseHandler.js";
+import { modalStepAddingHandler } from "./StepAdding/handler/modalStepAddingHandler.js";
+import { modalStepGalleryHandler } from "./StepGallery/handler/modalStepGalleryHandler.js";
+import { getWorksStates } from "../../../statements/stateManagers.js";
+import workModalAddingConstructor from "./StepAdding/workModalAddingConstructor.js";
+import { workModalMainConstructor } from "./StepGallery/workModalMainConstructor.js";
+import { displayModal } from "../displayModal/displayModal.js";
 
 /**
  * Cette fonction permet de construire une modal.

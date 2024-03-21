@@ -1,11 +1,11 @@
-import { workModalMainConstructor } from "../../workModalMainConstructor.js";
-import { displayWorks } from "../../../displayModels/displayWorks.js";
-import { setStepModalHandler } from "../../../handlers/StepModalHandler.js";
+import { workModalMainConstructor } from "../workModalMainConstructor.js";
+import { displayWorks } from "../../../../Works/displayWorks/displayWorks.js";
 import {
   fetchAllWorks,
   getStepModal,
   resetNewWorkStates,
-} from "../../../statements/stateManagers.js";
+  setStepModal,
+} from "../../../../../statements/stateManagers.js";
 
 /**
  *
@@ -26,7 +26,7 @@ export const modalStepGalleryHandler = (
   button.addEventListener("click", async (e) => {
     e.preventDefault();
     const works = await fetchAllWorks();
-    setStepModalHandler("gallery");
+    setStepModal("gallery");
     if (getStepModal() === "gallery") {
       divHeadButton.style.flexDirection = "row-reverse";
       divHeadButton.style.justifyContent = "flex-start";

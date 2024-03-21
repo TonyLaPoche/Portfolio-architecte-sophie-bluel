@@ -1,4 +1,4 @@
-import { displayModal } from "../../../displayModels/displayModal.js";
+import { displayModal } from "../../Modal/displayModal/displayModal.js";
 
 /**
  * Ajoute un écouteur d'événement sur le bouton passé en paramètre.

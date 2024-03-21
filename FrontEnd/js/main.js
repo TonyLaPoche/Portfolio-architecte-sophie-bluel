@@ -1,7 +1,6 @@
-import { displayFilters } from "./services/displayModels/displayFilters.js";
+import { loginHandlerNav } from "./services/authentification/displayNav/loginHandlerNav.js";
 import { loginHandler } from "./services/authentification/handler/loginHandler.js";
-import { loginHandlerNav } from "./services/handlers/loginHandlerNav.js";
-
+import { displayFilters } from "./services/components/Filters/displayFilters/displayFilters.js";
 import { initState } from "./services/statements/initState.js";
 
 /**

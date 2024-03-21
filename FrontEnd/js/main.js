@@ -28,8 +28,10 @@ const init = async () => {
     handlerNavLogin();
     // initialise les filtres et les travaux
     const { categories } = await initState();
+    // affiche les filtres et les travaux
     displayFilters(categories);
   } else if (pathname === "/login.html") {
+    // Surveillance de la soumission du formulaire de connexion
     handlerLoginForm();
   }
 };

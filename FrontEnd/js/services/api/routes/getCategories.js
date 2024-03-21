@@ -2,7 +2,7 @@ import { callApi } from "../utils/callApi.js";
 
 /**
  * Récupère l'ensemble des catégories.
- * @returns  Un tableau d'object de catégories comprenant un identifiant et un nom.
+ * @returns {{ id: number; name: string; }[]}  Un tableau d'object de catégories comprenant un identifiant et un nom.
  */
 export const getCategories = async () => {
   const options = {

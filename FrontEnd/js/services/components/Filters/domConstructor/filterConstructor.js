@@ -26,7 +26,6 @@ const constructDefaultFilter = () => {
   const defaultFilter = document.createElement("li");
   defaultFilter.classList.add("filter_item");
   defaultFilter.setAttribute("data-category", "all");
-  defaultFilter.setAttribute("role", "listitem");
   defaultFilter.classList.add("filter_item_active");
   defaultFilter.innerHTML = "Tous";
   return defaultFilter;
@@ -40,7 +39,6 @@ const constructDefaultFilter = () => {
 export const constructFilterList = (filters) => {
   const filtersUnorderedList = document.createElement("ul");
   filtersUnorderedList.setAttribute("id", "filters_list");
-  filtersUnorderedList.setAttribute("role", "list");
   filtersUnorderedList.appendChild(constructDefaultFilter());
   filters.forEach((filter) => {
     const filterDiv = constructFilter(filter);

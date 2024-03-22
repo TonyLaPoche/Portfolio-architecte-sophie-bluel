@@ -33,6 +33,7 @@ export const workModalMainConstructor = (modalMain, works) => {
 
     button.className = "gabargeIcon";
 
+    // suppression de l'oeuvre
     button.addEventListener("click", (e) => {
       e.preventDefault();
       handleDeleteItem(e);

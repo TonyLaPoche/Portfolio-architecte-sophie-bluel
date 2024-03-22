@@ -5,7 +5,6 @@ const handleDeleteItem = (e) => {
     .getAttribute("data-id")
     .split("-")[1];
   deleteWorkStatesById(id);
-  return;
 };
 
 /**
@@ -17,17 +16,17 @@ const handleDeleteItem = (e) => {
 export const workModalMainConstructor = (modalMain, works) => {
   const ul = document.createElement("ul");
   ul.className = "gallery-list";
-  for (let i = 0; i < works.length; i++) {
+  for (const work of works) {
     const li = document.createElement("li");
     li.className = "gallery-item";
-    li.setAttribute("data-id", "works-" + works[i].id); // rend unique l'id de chaque oeuvre
+    li.setAttribute("data-id", "works-" + work.id); // rend unique l'id de chaque oeuvre
 
     const figure = document.createElement("figure");
-    figure.setAttribute("data-title", works[i].title);
+    figure.setAttribute("data-title", work.title);
 
     const img = document.createElement("img");
-    img.src = works[i].imageUrl;
-    img.alt = works[i].title;
+    img.src = work.imageUrl;
+    img.alt = work.title;
 
     const button = document.createElement("button");
     button.type = "button";

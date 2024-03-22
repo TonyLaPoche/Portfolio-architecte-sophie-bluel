@@ -1,5 +1,9 @@
 import { deleteWorkStatesById } from "../../../../statements/stateManagers.js";
-
+/**
+ * @function handleDeleteItem
+ * @description Cette fonction permet de supprimer une oeuvre de la galerie photo.
+ * @param {Event} e
+ */
 const handleDeleteItem = (e) => {
   const id = e.currentTarget.parentNode.parentNode
     .getAttribute("data-id")
